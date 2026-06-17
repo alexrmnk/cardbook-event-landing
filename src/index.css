@@ -46,10 +46,10 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-3 px-8 py-4 border border-accent/40
-           text-ink-100 font-sans text-sm tracking-widest uppercase
-           hover:bg-accent hover:border-accent hover:text-white
-           transition-all duration-500 ease-out;
+    @apply inline-flex items-center gap-3 px-8 py-4
+           bg-[#7541F6] text-white font-sans text-sm tracking-widest uppercase
+           hover:bg-white hover:text-black
+           transition-colors duration-300;
   }
 }
 
