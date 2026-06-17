@@ -1,15 +1,9 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import textData from '../locales/en.json';
+import LegalModal from './LegalModal';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
-
-function IconX() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
 
 function IconLinkedIn() {
   return (
@@ -28,59 +22,94 @@ function IconInstagram() {
 }
 
 const socialLinks = [
-  { icon: IconX, label: 'X', href: '#' },
-  { icon: IconLinkedIn, label: 'LinkedIn', href: '#' },
-  { icon: IconInstagram, label: 'Instagram', href: '#' },
+  { icon: IconLinkedIn, label: 'LinkedIn', href: 'https://www.linkedin.com/company/101798763/' },
+  { icon: IconInstagram, label: 'Instagram', href: 'https://www.instagram.com/cardbook.app/' },
+];
+
+const legalLinks = [
+  { key: 'privacyLink', modal: 'privacy' },
+  { key: 'termsLink', modal: 'terms' },
 ];
 
 export default function Footer() {
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
+
+  const openModal = (modal) => {
+    if (modal === 'privacy') setPrivacyOpen(true);
+    if (modal === 'terms') setTermsOpen(true);
+  };
+
   return (
-    <footer className="relative bg-ink-950 border-t border-ink-800 py-16 md:py-20">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
+    <>
+      <footer className="relative bg-ink-950 border-t border-ink-800 py-16 md:py-20">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
 
-          {/* Brand */}
-          <div>
-            <p className="font-serif text-ink-100 text-lg mb-1">{t('footer.brand')}</p>
-            <p className="font-mono text-[10px] tracking-widest2 uppercase text-accent/70 mb-4">{t('footer.brandSub')}</p>
-            <p className="font-sans text-sm text-ink-500 max-w-xs">{t('footer.tagline')}</p>
+            {/* Brand */}
+            <div>
+              <p className="font-serif text-ink-100 text-lg mb-1">{t('footer.brand')}</p>
+              <p className="font-mono text-[10px] tracking-widest2 uppercase text-accent/70 mb-4">{t('footer.brandSub')}</p>
+              <p className="font-sans text-sm text-ink-500 max-w-xs">{t('footer.tagline')}</p>
+            </div>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-5">
+              {socialLinks.map(({ icon: Icon, label, href }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-ink-500 hover:text-ink-100 transition-colors duration-300"
+                >
+                  <Icon />
+                </motion.a>
+              ))}
+            </div>
           </div>
 
-          {/* Social icons */}
-          <div className="flex items-center gap-5">
-            {socialLinks.map(({ icon: Icon, label, href }) => (
-              <motion.a
-                key={label}
-                href={href}
-                aria-label={label}
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2 }}
-                className="text-ink-500 hover:text-ink-100 transition-colors duration-300"
-              >
-                <Icon size={16} strokeWidth={1.5} />
-              </motion.a>
-            ))}
+          {/* Bottom bar */}
+          <div className="mt-12 pt-6 border-t border-ink-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p className="font-mono text-[10px] text-zinc-400 tracking-widest uppercase">
+              {t('footer.copyright')}
+            </p>
+            <div className="flex items-center gap-6">
+              {legalLinks.map(({ key, modal }) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => openModal(modal)}
+                  className="font-mono text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-colors duration-300"
+                >
+                  {t(`footer.${key}`)}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
+      </footer>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-ink-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <p className="font-mono text-[10px] text-ink-600 tracking-widest uppercase">
-            {t('footer.copyright')}
-          </p>
-          <div className="flex items-center gap-6">
-            {['privacyLink', 'termsLink'].map((key) => (
-              <a
-                key={key}
-                href="#"
-                className="font-mono text-[10px] tracking-widest uppercase text-ink-600 hover:text-ink-300 transition-colors duration-300"
-              >
-                {t(`footer.${key}`)}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
+      <LegalModal
+        isOpen={privacyOpen}
+        onClose={() => setPrivacyOpen(false)}
+        title={t('legal.privacy.title')}
+        lastUpdated={t('legal.privacy.lastUpdated')}
+        sections={textData.legal.privacy.sections}
+        closeLabel={t('legal.close')}
+      />
+
+      <LegalModal
+        isOpen={termsOpen}
+        onClose={() => setTermsOpen(false)}
+        title={t('legal.terms.title')}
+        lastUpdated={t('legal.terms.lastUpdated')}
+        sections={textData.legal.terms.sections}
+        closeLabel={t('legal.close')}
+      />
+    </>
   );
 }

@@ -30,7 +30,7 @@ const lineVariants = {
 const stats = [
   { value: t('about.stat1Value'), label: t('about.stat1Label') },
   { value: t('about.stat2Value'), label: t('about.stat2Label') },
-  { value: t('about.stat3Value'), label: t('about.stat3Label') },
+  { value: t('about.stat3Value'), label: t('about.stat3Label'), nowrap: true },
 ];
 
 export default function About() {
@@ -92,7 +92,7 @@ export default function About() {
             </div>
 
             {/* Stat trio */}
-            <div className="grid grid-cols-3 gap-0">
+            <div className="grid grid-cols-3 gap-0 min-w-0">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -100,9 +100,11 @@ export default function About() {
                   initial="hidden"
                   animate={isInView ? 'visible' : 'hidden'}
                   custom={0.35 + i * 0.12}
-                  className={`flex flex-col gap-1.5 py-6 pr-6 ${i < 2 ? 'border-r border-ink-700' : ''} ${i > 0 ? 'pl-6 pr-0' : ''}`}
+                  className={`flex flex-col gap-1.5 py-6 min-w-0 ${i < 2 ? 'border-r border-ink-700 pr-4 md:pr-6' : ''} ${i > 0 ? 'pl-4 md:pl-6' : ''} ${i === 2 ? 'pr-0' : ''}`}
                 >
-                  <span className="font-serif text-3xl md:text-4xl font-medium text-ink-100 leading-none">
+                  <span
+                    className={`font-serif text-3xl md:text-4xl font-medium text-ink-100 leading-none ${stat.nowrap ? 'whitespace-nowrap' : ''}`}
+                  >
                     {stat.value}
                   </span>
                   <span className="font-mono text-[9px] tracking-widest2 uppercase text-ink-400">

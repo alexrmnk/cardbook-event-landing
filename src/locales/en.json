@@ -14,22 +14,26 @@
     "locationLabel": "Location",
     "dateLabel": "Date",
     "cta": "Request Invitation",
+    "ctaHref": "#",
     "ctaNote": "By invitation only · Strictly limited seats",
     "scrollHint": "Scroll"
+  },
+  "ticker": {
+    "divider": "·"
   },
   "about": {
     "eyebrow": "About",
     "titleLine1": "Networkers",
     "titleLine2": "for Networkers",
-    "body1": "The Networking Club is not a conference. It is a carefully curated gathering of the city's most influential founders, C-level executives, and decision-makers — brought together in one room, one evening, with no agenda.",
-    "body2": "We believe the most transformative conversations happen outside the boardroom. CardBook exists to make those moments happen with intention, curation, and discretion.",
+    "body1": "The Networking Club is an intimate evening for founders, C-level executives, and leaders who value meaningful connection. Every guest joins through a straightforward profile verification — creating a curated room where every conversation is worth your time.",
+    "body2": "From the opening keynote to AI-powered matchmaking and open networking, the evening follows a thoughtful programme built around genuine dialogue. CardBook brings it together with intention, curation, and care.",
     "stat1Value": "200+",
     "stat1Label": "Invited guests",
     "stat2Value": "1",
     "stat2Label": "Evening only",
     "stat3Value": "C-Suite",
     "stat3Label": "Exclusive audience",
-    "pullQuote": "No panels. No pitches. Just the right people in the right room."
+    "pullQuote": "A curated room. A clear programme. Connections that matter."
   },
   "valueProps": {
     "eyebrow": "What to Expect",
@@ -101,6 +105,10 @@
     "titleLine1": "Co-Organisers",
     "names": ["CardBook", "Partner Two", "Partner Three", "Partner Four"]
   },
+  "finalCta": {
+    "headline": "Shape the Future of Your Network.",
+    "subline": "Request your place at an evening designed for leaders who connect with purpose."
+  },
   "footer": {
     "brand": "The Networking Club",
     "brandSub": "by CardBook",
@@ -111,5 +119,36 @@
     "socialTwitter": "X (Twitter)",
     "socialLinkedIn": "LinkedIn",
     "socialInstagram": "Instagram"
+  },
+  "legal": {
+    "close": "Close",
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: June 2026",
+      "sections": [
+        {
+          "title": "1. Information Disclaimer",
+          "text": "This landing page serves strictly as an informational gateway for The Networking Club event. We do not directly collect, harvest, or store any personal data, analytical profiles, or financial information on this website."
+        },
+        {
+          "title": "2. External Redirection",
+          "text": "When you click 'Request Invitation', you are securely redirected to the primary CardBook Ecosystem platform. Any personal data submitted during the vetting or registration process is governed strictly by CardBook's main Privacy Policy and secure data infrastructure."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: June 2026",
+      "sections": [
+        {
+          "title": "1. Event Access & Vetting",
+          "text": "Submission of an invitation request does not guarantee entry. Access to The Networking Club is strictly conditional upon successful profile verification by the CardBook Ecosystem administration to maintain an exclusive professional environment."
+        },
+        {
+          "title": "2. On-Site Regulations",
+          "text": "Attendees agree to adhere to the standard code of professional conduct. The organizers reserve the right to revoke access or request an attendee to leave the venue at any point during the evening."
+        }
+      ]
+    }
   }
 }

@@ -4,11 +4,32 @@ import textData from '../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 
+const PARTNER_LOGOS = [
+  {
+    name: 'Panthera',
+    src: '/media/logos/panthera.png',
+    imgClass: 'h-14 md:h-20',
+  },
+  {
+    name: 'Connect',
+    src: '/media/logos/connect.png',
+  },
+  {
+    name: 'CardBook',
+    src: '/media/logos/CardBook.png',
+  },
+  {
+    name: 'Dealsflow',
+    src: '/media/logos/dealsflow.png',
+  },
+];
+
+const logoImgClass =
+  'w-auto object-contain grayscale opacity-50 transition-all duration-500 hover:grayscale-0 hover:opacity-100';
+
 export default function Partners() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px 0px' });
-
-  const names = textData.partners.names;
 
   return (
     <section ref={ref} className="relative bg-ink-900 py-32 md:py-44">
@@ -23,19 +44,22 @@ export default function Partners() {
           <h2 className="section-heading">{t('partners.titleLine1')}</h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink-700">
-          {names.map((name, i) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 place-items-center">
+          {PARTNER_LOGOS.map((logo, i) => (
             <motion.div
-              key={name}
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
+              key={logo.name}
+              initial={{ opacity: 0, y: 12 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.9, delay: 0.15 + i * 0.1, ease: 'easeOut' }}
-              className="bg-ink-900 aspect-video flex items-center justify-center p-8 group hover:bg-ink-800 transition-colors duration-400"
+              className="flex items-center justify-center"
             >
-              {/* Logo placeholder — replace with <img> when assets are provided */}
-              <span className="font-serif text-ink-500 text-sm tracking-wider group-hover:text-ink-300 transition-colors duration-400">
-                {name}
-              </span>
+              <img
+                src={logo.src}
+                alt={logo.name}
+                loading="lazy"
+                draggable={false}
+                className={`${logo.imgClass ?? 'h-16 md:h-24'} ${logoImgClass}`}
+              />
             </motion.div>
           ))}
         </div>

@@ -109,7 +109,7 @@ export default function Hero() {
           >
             <div className="flex flex-col items-center gap-1">
               <span className="font-mono text-[9px] tracking-widest3 uppercase text-ink-400">{t('hero.dateLabel')}</span>
-              <span className="font-sans text-xl md:text-2xl text-ink-100 tracking-wider">
+              <span className="font-sans text-2xl md:text-3xl text-ink-100 tracking-wider">
                 {t('hero.date')} &nbsp;·&nbsp; {t('hero.time')}
               </span>
             </div>
@@ -118,8 +118,8 @@ export default function Hero() {
 
             <div className="flex flex-col items-center gap-1">
               <span className="font-mono text-[9px] tracking-widest3 uppercase text-ink-400">{t('hero.locationLabel')}</span>
-              <span className="flex items-center gap-2 font-sans text-xl md:text-2xl text-ink-100 tracking-wider">
-                <MapPin size={17} className="text-accent shrink-0" />
+              <span className="flex items-center gap-2 font-sans text-2xl md:text-3xl text-ink-100 tracking-wider">
+                <MapPin size={20} className="text-accent shrink-0" />
                 {t('hero.locationCity')}
               </span>
             </div>
@@ -127,14 +127,14 @@ export default function Hero() {
 
           {/* CTA */}
           <motion.div {...fadeUp(1.2)}>
-            <button className="btn-primary group">
+            <a href={t('hero.ctaHref')} className="btn-primary group">
               <span className="tracking-widest uppercase text-xs">{t('hero.cta')}</span>
               <ArrowRight
                 size={14}
                 className="transition-transform duration-500 group-hover:translate-x-1"
               />
-            </button>
-            <p className="mt-5 font-mono text-[9px] tracking-widest2 uppercase text-ink-500">
+            </a>
+            <p className="mt-5 font-mono text-[9px] tracking-widest2 uppercase text-zinc-400">
               {t('hero.ctaNote')}
             </p>
           </motion.div>
