@@ -14,7 +14,7 @@
     "locationLabel": "Location",
     "dateLabel": "Date",
     "cta": "Request Invitation",
-    "ctaHref": "#",
+    "ctaHref": "https://connect.cardbook.biz/",
     "ctaNote": "By invitation only · Strictly limited seats",
     "scrollHint": "Scroll"
   },
