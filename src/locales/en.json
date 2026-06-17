@@ -1,1 +1,115 @@
-{}
+{
+  "nav": {
+    "brand": "The Networking Club",
+    "brandSub": "by CardBook"
+  },
+  "hero": {
+    "eyebrow": "An Exclusive Evening",
+    "titleLine1": "The Networking",
+    "titleLine2": "Club",
+    "subtitle": "by CardBook",
+    "date": "08.07.2026",
+    "time": "19:00",
+    "locationCity": "Tel Aviv",
+    "locationLabel": "Location",
+    "dateLabel": "Date",
+    "cta": "Request Invitation",
+    "ctaNote": "By invitation only · Strictly limited seats",
+    "scrollHint": "Scroll"
+  },
+  "about": {
+    "eyebrow": "About",
+    "titleLine1": "Networkers",
+    "titleLine2": "for Networkers",
+    "body1": "The Networking Club is not a conference. It is a carefully curated gathering of the city's most influential founders, C-level executives, and decision-makers — brought together in one room, one evening, with no agenda.",
+    "body2": "We believe the most transformative conversations happen outside the boardroom. CardBook exists to make those moments happen with intention, curation, and discretion.",
+    "stat1Value": "200+",
+    "stat1Label": "Invited guests",
+    "stat2Value": "1",
+    "stat2Label": "Evening only",
+    "stat3Value": "C-Suite",
+    "stat3Label": "Exclusive audience",
+    "pullQuote": "No panels. No pitches. Just the right people in the right room."
+  },
+  "valueProps": {
+    "eyebrow": "What to Expect",
+    "items": [
+      {
+        "index": "01",
+        "title": "Vetted Community",
+        "desc": "Access is granted upon a standard profile verification to ensure a highly relevant professional environment for all attendees."
+      },
+      {
+        "index": "02",
+        "title": "CardBook Members Access",
+        "desc": "Complimentary entrance and free registration for all verified members of the CardBook Ecosystem."
+      },
+      {
+        "index": "03",
+        "title": "Drinks & Bar",
+        "badge": "Cash Bar",
+        "desc": "A premium selection of spirits, wines, and signature cocktails will be available for purchase throughout the evening."
+      },
+      {
+        "index": "04",
+        "title": "Complimentary Snacks",
+        "desc": "Enjoy a curated selection of complimentary finger foods and light snacks during the networking sessions."
+      }
+    ]
+  },
+  "venue": {
+    "eyebrow": "Venue",
+    "titleLine1": "The Location",
+    "address": "19 Harbaa Street, 3rd floor",
+    "addressSub": "Middle Tower · Adjacent to Sharona Market",
+    "city": "Tel Aviv, Israel",
+    "mapCta": "View on Map"
+  },
+  "agenda": {
+    "eyebrow": "The Evening",
+    "titleLine1": "Schedule",
+    "items": [
+      {
+        "time": "19:00",
+        "title": "Doors Open & Reception",
+        "desc": "Guest arrival, registration, and activation of digital Connect profiles."
+      },
+      {
+        "time": "19:30",
+        "title": "Official Opening & Vision",
+        "desc": "Keynote by CardBook founders and the Panthera team introducing the platform's networking ecosystem."
+      },
+      {
+        "time": "20:00",
+        "title": "AI-Powered Matchmaking",
+        "desc": "Curated introductions, targeted interactions in Executive Connection Rooms, and live opportunity tracking."
+      },
+      {
+        "time": "21:00",
+        "title": "Open Networking & Spotlights",
+        "desc": "Fluid interactions enhanced by active digital displays and high-energy attendee spotlight sessions."
+      },
+      {
+        "time": "22:30",
+        "title": "Close of Evening",
+        "desc": "Final connections, closing remarks, and farewell."
+      }
+    ]
+  },
+  "partners": {
+    "eyebrow": "Partners",
+    "titleLine1": "Co-Organisers",
+    "names": ["CardBook", "Partner Two", "Partner Three", "Partner Four"]
+  },
+  "footer": {
+    "brand": "The Networking Club",
+    "brandSub": "by CardBook",
+    "tagline": "Exclusive gatherings for those who shape the future.",
+    "privacyLink": "Privacy",
+    "termsLink": "Terms",
+    "copyright": "© 2026 CardBook. All rights reserved.",
+    "socialTwitter": "X (Twitter)",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram"
+  }
+}
