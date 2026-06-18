@@ -142,7 +142,22 @@ export default function Venue() {
           className="mb-16 md:mb-20 lg:mb-24"
         >
           <span className="eyebrow">{t('venue.eyebrow')}</span>
-          <h2 className="section-heading mb-6">{t('venue.titleLine1')}</h2>
+          <div className="flex flex-nowrap justify-between items-center gap-3 sm:gap-4 w-full mb-6">
+            <h2 className="section-heading mb-0 shrink min-w-0">{t('venue.titleLine1')}</h2>
+            <a
+              href="https://www.instagram.com/panthera_pro/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Panthera on Instagram"
+              className="w-20 md:w-32 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0"
+            >
+              <img
+                src="/media/logos/panthera.png"
+                alt="Panthera"
+                className="w-full h-auto"
+              />
+            </a>
+          </div>
 
           <a
             href="https://www.google.com/maps/search/?api=1&query=19+Harbaa+Street,+Tel+Aviv,+Israel"
@@ -156,14 +171,14 @@ export default function Venue() {
                 className="text-zinc-400 group-hover:text-white shrink-0 mt-[3px] transition-colors duration-300"
               />
               <div>
-                <p className="font-sans text-base text-zinc-400 group-hover:text-white leading-snug transition-colors duration-300 flex items-center gap-1.5">
+                <p className="font-sans text-lg text-zinc-400 group-hover:text-white leading-snug transition-colors duration-300 flex items-center gap-1.5">
                   {t('venue.address')}
                   <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 text-[#7541F6]" />
                 </p>
-                <p className="font-sans text-sm text-zinc-400 group-hover:text-white mt-0.5 transition-colors duration-300">
+                <p className="font-sans text-base text-zinc-400 group-hover:text-white mt-0.5 transition-colors duration-300">
                   {t('venue.addressSub')}
                 </p>
-                <p className="font-sans text-sm text-zinc-400 group-hover:text-white transition-colors duration-300">
+                <p className="font-sans text-base text-zinc-400 group-hover:text-white transition-colors duration-300">
                   {t('venue.city')}
                 </p>
               </div>

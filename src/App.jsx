@@ -4,7 +4,6 @@ import TickerMarquee from './components/TickerMarquee';
 import About from './components/About';
 import Venue from './components/Venue';
 import Agenda from './components/Agenda';
-import Partners from './components/Partners';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 
@@ -18,7 +17,6 @@ export default function App() {
       <Venue />
       <Agenda />
       <TickerMarquee />
-      <Partners />
       <FinalCTA />
       <Footer />
     </div>

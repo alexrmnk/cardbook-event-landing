@@ -1,8 +1,11 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { ShieldCheck, UserCheck, Martini, Utensils } from 'lucide-react';
 import textData from '../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
+
+const ITEM_ICONS = [ShieldCheck, UserCheck, Martini, Utensils];
 
 export default function ValueProps() {
   const ref = useRef(null);
@@ -26,6 +29,7 @@ export default function ValueProps() {
           {items.map((item, i) => {
             const isRightCol = i % 2 === 1;
             const isTopRow = i < 2;
+            const Icon = ITEM_ICONS[i];
 
             return (
               <motion.div
@@ -47,10 +51,16 @@ export default function ValueProps() {
                 {/* Hover fill */}
                 <div className="absolute inset-0 bg-accent-glow opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                {/* Index */}
-                <span className="block font-mono text-[10px] tracking-widest3 text-accent/60 mb-6 uppercase">
-                  {item.index}
-                </span>
+                {/* Icon */}
+                <div className="mb-6">
+                  {Icon && (
+                    <Icon
+                      className="size-14 text-accent/70"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
 
                 {/* Title + optional badge */}
                 <div className="flex flex-wrap items-center gap-2.5 mb-3">
@@ -68,7 +78,7 @@ export default function ValueProps() {
                 <span className="block w-6 h-px bg-accent/30 mb-4 group-hover:w-10 transition-all duration-500" />
 
                 {/* Description */}
-                <p className="font-sans text-sm text-ink-400 leading-relaxed font-light max-w-xs">
+                <p className="font-sans text-sm text-ink-300 leading-relaxed font-light max-w-xs">
                   {item.desc}
                 </p>
               </motion.div>

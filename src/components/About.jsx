@@ -1,8 +1,21 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import textData from '../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
+
+const CO_ORGANISER_LOGOS = [
+  { name: 'Connect', src: '/media/logos/connect.png' },
+  { name: 'CardBook', src: '/media/logos/CardBook.png' },
+  { name: 'Dealsflow', src: '/media/logos/dealsflow.png' },
+];
+
+const AVATAR_PROFILES = [
+  { href: 'https://www.instagram.com/glaybman_elli/' },
+  { href: 'https://www.instagram.com/alexlyhovez/' },
+  { href: 'https://www.instagram.com/alenamor.marketing/' },
+];
 
 function useReveal(options = {}) {
   const ref = useRef(null);
@@ -40,7 +53,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-ink-950 py-32 md:py-44 lg:py-52 overflow-hidden"
+      className="relative bg-ink-950 pt-16 pb-32 md:pt-20 md:pb-44 lg:pt-24 lg:pb-52 overflow-hidden"
     >
       {/* Subtle background accent blob */}
       <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-accent-glow blur-3xl pointer-events-none" />
@@ -107,7 +120,7 @@ export default function About() {
                   >
                     {stat.value}
                   </span>
-                  <span className="font-mono text-[9px] tracking-widest2 uppercase text-ink-400">
+                  <span className="font-mono text-xs tracking-widest2 uppercase text-ink-200">
                     {stat.label}
                   </span>
                 </motion.div>
@@ -138,17 +151,81 @@ export default function About() {
           </div>
         </div>
 
-        {/* ── Pull quote ── */}
+        {/* ── Culture block + merged co-organisers ── */}
         <motion.div
           ref={quoteRef}
           initial={{ opacity: 0, y: 24 }}
           animate={quoteInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-28 md:mt-40 border-l-2 border-accent/50 pl-8 md:pl-12 max-w-2xl"
+          className="mt-28 md:mt-40"
         >
-          <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl text-ink-200 leading-snug italic font-medium">
-            &ldquo;{t('about.pullQuote')}&rdquo;
-          </blockquote>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center mb-14 md:mb-16">
+            <div>
+              <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-ink-100 font-medium leading-snug mb-4">
+                {t('about.cultureTitleLine1')}
+                <br className="hidden md:block" />
+                {' '}
+                {t('about.cultureTitleLine2')}
+              </h3>
+              <p className="font-sans text-base md:text-lg text-zinc-300 font-light leading-relaxed max-w-lg">
+                {t('about.cultureSubtitle')}
+              </p>
+            </div>
+
+            <div className="flex justify-start md:justify-end">
+              <div className="flex gap-6 items-start">
+                {AVATAR_PROFILES.map((profile) => (
+                  <div key={profile.href} className="flex flex-col items-center">
+                    <div
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-zinc-800 border-2 border-[#0e1013] overflow-hidden"
+                      aria-hidden="true"
+                    />
+                    <a
+                      href={profile.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] text-zinc-400 hover:text-white mt-2 block text-center uppercase tracking-wider transition-colors duration-300"
+                    >
+                      Instagram ↗
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-6 pt-8 border-t border-ink-800 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6 min-w-0">
+              <span className="font-mono text-[10px] tracking-widest2 uppercase text-ink-500 shrink-0">
+                {t('about.coOrganisersEyebrow')}
+              </span>
+              <div className="flex flex-wrap items-center gap-4 md:gap-6">
+                {CO_ORGANISER_LOGOS.map((logo) => (
+                  <img
+                    key={logo.name}
+                    src={logo.src}
+                    alt={logo.name}
+                    loading="lazy"
+                    draggable={false}
+                    className="grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500 h-8 md:h-10 w-auto object-contain"
+                  />
+                ))}
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/972509025013"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 border border-[#7541F6] text-[#7541F6] px-5 py-2 rounded-lg hover:bg-[#7541F6] hover:text-white transition-colors duration-300 shrink-0 font-mono text-[10px] tracking-widest2 uppercase"
+            >
+              {t('about.contactUs')}
+              <ArrowUpRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+          </div>
         </motion.div>
 
       </div>

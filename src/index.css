@@ -46,7 +46,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-3 px-8 py-4
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-lg
            bg-[#7541F6] text-white font-sans text-sm tracking-widest uppercase
            hover:bg-white hover:text-black
            transition-colors duration-300;

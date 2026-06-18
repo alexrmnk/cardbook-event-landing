@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
 import textData from '../locales/en.json';
 import Header from './Header';
+import Logo from './Logo';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 
@@ -10,12 +11,6 @@ const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1], delay },
-});
-
-const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { duration: 1.4, ease: 'easeOut', delay },
 });
 
 export default function Hero() {
@@ -59,47 +54,32 @@ export default function Hero() {
 
         <motion.div
           style={{ y: contentY }}
-          className="flex flex-col items-center justify-center flex-1 px-6 md:px-12 text-center pb-24 pt-16"
+          className="flex flex-col items-center justify-center flex-1 px-6 md:px-12 text-center pb-12 pt-8 md:pt-12"
         >
-          {/* Eyebrow */}
-          <motion.div {...fadeIn(0.4)} className="mb-8 md:mb-10">
-            <span className="eyebrow">{t('hero.eyebrow')}</span>
-            <motion.span
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="block h-px bg-accent/40 w-16 mx-auto mt-3 origin-left"
-            />
+          {/* Headline — logo with sr-only h1 for SEO */}
+          <motion.div
+            initial={{ y: '110%', opacity: 0 }}
+            animate={{ y: '0%', opacity: 1 }}
+            transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden mb-4 w-full max-w-2xl mx-auto"
+          >
+            <h1 className="sr-only">{t('nav.brand')}</h1>
+            <Logo className="w-full h-auto" aria-hidden="true" />
           </motion.div>
-
-          {/* Headline */}
-          <div className="overflow-hidden mb-2">
-            <motion.h1
-              initial={{ y: '110%', opacity: 0 }}
-              animate={{ y: '0%', opacity: 1 }}
-              transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-medium text-[clamp(3.5rem,10vw,9rem)] leading-[0.95] tracking-tight text-ink-100"
-            >
-              {t('hero.titleLine1')}
-            </motion.h1>
-          </div>
-          <div className="overflow-hidden mb-4">
-            <motion.h1
-              initial={{ y: '110%', opacity: 0 }}
-              animate={{ y: '0%', opacity: 1 }}
-              transition={{ duration: 1.1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-medium text-[clamp(3.5rem,10vw,9rem)] leading-[0.95] tracking-tight text-ink-100"
-            >
-              {t('hero.titleLine2')}
-            </motion.h1>
-          </div>
 
           {/* Subtitle */}
           <motion.p
             {...fadeUp(0.9)}
             className="font-sans font-light text-sm md:text-base tracking-[0.18em] uppercase text-ink-300 mb-12 md:mb-16"
           >
-            {t('hero.subtitle')}
+            <a
+              href="https://cardbookecosystem.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              {t('hero.subtitle')}
+            </a>
           </motion.p>
 
           {/* Meta row — date & location */}
@@ -138,19 +118,6 @@ export default function Hero() {
               {t('hero.ctaNote')}
             </p>
           </motion.div>
-        </motion.div>
-
-        {/* Scroll hint */}
-        <motion.div
-          {...fadeIn(1.8)}
-          className="flex flex-col items-center pb-10 gap-2"
-        >
-          <span className="font-mono text-[9px] tracking-widest3 uppercase text-ink-500">{t('hero.scrollHint')}</span>
-          <motion.span
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="block w-px h-8 bg-gradient-to-b from-ink-600 to-transparent mx-auto"
-          />
         </motion.div>
       </div>
     </section>

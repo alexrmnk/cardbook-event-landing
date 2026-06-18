@@ -7,7 +7,7 @@
     "eyebrow": "An Exclusive Evening",
     "titleLine1": "The Networking",
     "titleLine2": "Club",
-    "subtitle": "by CardBook",
+    "subtitle": "by CardBook Ecosystem",
     "date": "08.07.2026",
     "time": "19:00",
     "locationCity": "Tel Aviv",
@@ -33,7 +33,12 @@
     "stat2Label": "Evening only",
     "stat3Value": "C-Suite",
     "stat3Label": "Exclusive audience",
-    "pullQuote": "A curated room. A clear programme. Connections that matter."
+    "pullQuote": "A curated room. A clear programme. Connections that matter.",
+    "cultureTitleLine1": "We are creating a new culture",
+    "cultureTitleLine2": "of networking",
+    "cultureSubtitle": "Developing AI-powered tools to help you achieve your goals.",
+    "coOrganisersEyebrow": "Co-Organisers",
+    "contactUs": "Contact us"
   },
   "valueProps": {
     "eyebrow": "What to Expect",
@@ -51,7 +56,7 @@
       {
         "index": "03",
         "title": "Drinks & Bar",
-        "badge": "Cash Bar",
+        "badge": "Payment Bar",
         "desc": "A premium selection of spirits, wines, and signature cocktails will be available for purchase throughout the evening."
       },
       {
@@ -111,8 +116,8 @@
   },
   "footer": {
     "brand": "The Networking Club",
-    "brandSub": "by CardBook",
-    "tagline": "Exclusive gatherings for those who shape the future.",
+    "brandSub": "by CardBook Ecosystem",
+    "tagline": "We are creating a new culture of networking",
     "privacyLink": "Privacy",
     "termsLink": "Terms",
     "copyright": "© 2026 CardBook. All rights reserved.",

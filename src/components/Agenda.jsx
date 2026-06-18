@@ -37,7 +37,7 @@ export default function Agenda() {
                 className="relative flex items-start gap-8 md:gap-12 py-8 md:py-10 border-b border-ink-800 last:border-0"
               >
                 {/* Time */}
-                <span className="font-mono text-sm text-ink-400 w-16 md:w-20 shrink-0 pt-0.5">
+                <span className="font-mono text-sm md:text-xl text-ink-400 w-16 md:w-20 shrink-0 pt-0.5">
                   {item.time}
                 </span>
 
@@ -47,7 +47,7 @@ export default function Agenda() {
                 {/* Content */}
                 <div className="pl-6 md:pl-8">
                   <p className="font-serif text-lg md:text-xl text-ink-100 font-medium mb-1">{item.title}</p>
-                  <p className="font-sans text-sm text-ink-400 font-light">{item.desc}</p>
+                  <p className="font-sans text-base text-ink-200 font-light">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import Logo from './Logo';
 import textData from '../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
@@ -12,9 +11,9 @@ export default function Header() {
       transition={{ duration: 1.4, ease: 'easeOut', delay: 0.2 }}
       className="relative z-10 flex items-center justify-center px-6 md:px-12 lg:px-20 pt-8 md:pt-10"
     >
-      <a href="/" aria-label={t('nav.brand')} className="flex-shrink-0">
-        <Logo className="h-12 md:h-[3.375rem] w-auto" />
-      </a>
+      <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-white/60 font-medium text-center">
+        {t('hero.eyebrow')}
+      </p>
     </motion.header>
   );
 }
