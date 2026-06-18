@@ -12,9 +12,9 @@ const CO_ORGANISER_LOGOS = [
 ];
 
 const AVATAR_PROFILES = [
-  { href: 'https://www.instagram.com/glaybman_elli/' },
-  { href: 'https://www.instagram.com/alexlyhovez/' },
-  { href: 'https://www.instagram.com/alenamor.marketing/' },
+  { href: 'https://www.instagram.com/glaybman_elli/', src: '/media/elli.jpg', alt: 'Elli' },
+  { href: 'https://www.instagram.com/alexlyhovez/', src: '/media/alex.jpg', alt: 'Alex' },
+  { href: 'https://www.instagram.com/alenamor.marketing/', src: '/media/alona.jpg', alt: 'Alena' },
 ];
 
 function useReveal(options = {}) {
@@ -163,8 +163,7 @@ export default function About() {
             <div>
               <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-ink-100 font-medium leading-snug mb-4">
                 {t('about.cultureTitleLine1')}
-                <br className="hidden md:block" />
-                {' '}
+                <br />
                 {t('about.cultureTitleLine2')}
               </h3>
               <p className="font-sans text-base md:text-lg text-zinc-300 font-light leading-relaxed max-w-lg">
@@ -176,9 +175,12 @@ export default function About() {
               <div className="flex gap-6 items-start">
                 {AVATAR_PROFILES.map((profile) => (
                   <div key={profile.href} className="flex flex-col items-center">
-                    <div
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-zinc-800 border-2 border-[#0e1013] overflow-hidden"
-                      aria-hidden="true"
+                    <img
+                      src={profile.src}
+                      alt={profile.alt}
+                      loading="lazy"
+                      draggable={false}
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-[#0e1013]"
                     />
                     <a
                       href={profile.href}
@@ -217,7 +219,7 @@ export default function About() {
               href="https://wa.me/972509025013"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 border border-[#7541F6] text-[#7541F6] px-5 py-2 rounded-lg hover:bg-[#7541F6] hover:text-white transition-colors duration-300 shrink-0 font-mono text-[10px] tracking-widest2 uppercase"
+              className="group inline-flex items-center gap-2 w-fit self-start sm:self-auto border border-[#7541F6] text-[#7541F6] px-5 py-2 rounded-lg hover:bg-[#7541F6] hover:text-white transition-colors duration-300 shrink-0 font-mono text-[10px] tracking-widest2 uppercase"
             >
               {t('about.contactUs')}
               <ArrowUpRight

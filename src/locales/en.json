@@ -40,6 +40,24 @@
     "coOrganisersEyebrow": "Co-Organisers",
     "contactUs": "Contact us"
   },
+  "roadmap": {
+    "tag": "Process",
+    "title": "How to Join the Evening",
+    "steps": [
+      {
+        "title": "01. Access Connect",
+        "description": "Open the Connect module inside the CardBook Ecosystem to begin your registration path."
+      },
+      {
+        "title": "02. Profile Verification",
+        "description": "Submit your request. Our administration audits profiles manually to ensure a high-caliber C-suite presence."
+      },
+      {
+        "title": "03. Receive Invitation",
+        "description": "Upon successful vetting, your formal digital entry ticket with passcodes is delivered straight to your inbox."
+      }
+    ]
+  },
   "valueProps": {
     "eyebrow": "What to Expect",
     "items": [

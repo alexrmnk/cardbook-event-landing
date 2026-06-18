@@ -1,5 +1,6 @@
 import Hero from './components/Hero';
 import ValueProps from './components/ValueProps';
+import Roadmap from './components/Roadmap';
 import TickerMarquee from './components/TickerMarquee';
 import About from './components/About';
 import Venue from './components/Venue';
@@ -13,6 +14,7 @@ export default function App() {
       <Hero />
       <About />
       <ValueProps />
+      <Roadmap />
       <TickerMarquee />
       <Venue />
       <Agenda />
