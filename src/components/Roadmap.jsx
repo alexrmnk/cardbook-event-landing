@@ -1,11 +1,15 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { AppWindow, ScanLine, MailOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import textData from '../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 
-const STEP_ICONS = [AppWindow, ScanLine, MailOpen];
+const STEP_IMAGES = [
+  '/media/1_connect.jpg',
+  '/media/2_profile.jpg',
+  '/media/3_reccive.jpg',
+];
 
 /* ── Animation variants ── */
 const containerVariants = {
@@ -88,15 +92,12 @@ export default function Roadmap() {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 xl:gap-14">
-            {steps.map((step, i) => {
-              const Icon = STEP_ICONS[i];
-
-              return (
-                <motion.article
-                  key={step.title}
-                  variants={stepVariants}
-                  className="group relative pl-10 lg:pl-0 lg:pt-10"
-                >
+            {steps.map((step, i) => (
+              <motion.article
+                key={step.title}
+                variants={stepVariants}
+                className="group relative pl-10 lg:pl-0 lg:pt-10"
+              >
                   {/*
                     Step index badge.
                     Mobile  : absolute top-left of the article (aligns with vertical track).
@@ -116,7 +117,7 @@ export default function Roadmap() {
                     {String(i + 1).padStart(2, '0')}
                   </div>
 
-                  {/* ── Illustration placeholder ── */}
+                  {/* ── Step illustration ── */}
                   <div
                     className="relative aspect-[4/3] overflow-hidden rounded-2xl
                       bg-white/[0.01] border border-white/[0.08]
@@ -126,6 +127,12 @@ export default function Roadmap() {
                       group-hover:border-white/[0.13]
                       group-hover:shadow-[0_0_56px_-10px_rgba(117,65,246,0.28)]"
                   >
+                    <img
+                      src={STEP_IMAGES[i]}
+                      alt={step.title}
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+
                     {/* Inner accent glow on hover */}
                     <div
                       className="absolute inset-0 rounded-2xl
@@ -133,22 +140,6 @@ export default function Roadmap() {
                         opacity-0 group-hover:opacity-100
                         transition-opacity duration-500 pointer-events-none"
                     />
-
-                    {/* Centred placeholder icon */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon
-                        className="size-12 text-white/[0.07] group-hover:text-accent/25
-                          transition-colors duration-500"
-                        strokeWidth={1}
-                        aria-hidden="true"
-                      />
-                    </div>
-
-                    {/* Corner accent dots */}
-                    <span className="absolute top-3 left-3 size-1 rounded-full bg-white/[0.07]" />
-                    <span className="absolute top-3 right-3 size-1 rounded-full bg-white/[0.07]" />
-                    <span className="absolute bottom-3 left-3 size-1 rounded-full bg-white/[0.07]" />
-                    <span className="absolute bottom-3 right-3 size-1 rounded-full bg-white/[0.07]" />
                   </div>
 
                   {/* ── Step title ── */}
@@ -178,9 +169,23 @@ export default function Roadmap() {
                     {step.description}
                   </p>
                 </motion.article>
-              );
-            })}
+            ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.0, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-12 md:mt-16 flex justify-center w-full"
+          >
+            <a href={t('hero.ctaHref')} className="btn-primary group">
+              <span className="tracking-widest uppercase text-xs">{t('hero.cta')}</span>
+              <ArrowRight
+                size={14}
+                className="transition-transform duration-500 group-hover:translate-x-1"
+              />
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

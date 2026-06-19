@@ -128,6 +128,12 @@
     "titleLine1": "Co-Organisers",
     "names": ["CardBook", "Partner Two", "Partner Three", "Partner Four"]
   },
+  "sponsorship": {
+    "eyebrow": "Strategic Partnerships",
+    "title": "Align your brand with the future of networking.",
+    "description": "Position your vision directly in front of a strictly curated audience of founders, investors, and C-level executives. Become a cornerstone of The Networking Club experience.",
+    "cta": "Explore Sponsorships"
+  },
   "finalCta": {
     "headline": "Shape the Future of Your Network.",
     "subline": "Request your place at an evening designed for leaders who connect with purpose."
