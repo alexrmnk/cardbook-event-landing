@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { MapPin, ArrowUpRight } from 'lucide-react';
+import { MapPin, ArrowUpRight, ArrowRight } from 'lucide-react';
 import textData from '../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
@@ -232,6 +232,16 @@ export default function Venue() {
             />
           ))}
         </div>
+      </div>
+
+      <div className="relative z-10 flex justify-center w-full px-6 md:px-12 lg:px-20 pt-16 md:pt-20 pb-12 md:pb-16">
+        <a href={t('hero.ctaHref')} className="btn-primary group">
+          <span className="tracking-widest uppercase text-xs">{t('hero.cta')}</span>
+          <ArrowRight
+            size={14}
+            className="transition-transform duration-500 group-hover:translate-x-1"
+          />
+        </a>
       </div>
     </section>
   );

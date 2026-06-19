@@ -123,6 +123,10 @@
       }
     ]
   },
+  "pastEvents": {
+    "eyebrow": "The Experience",
+    "title": "Past Editions"
+  },
   "partners": {
     "eyebrow": "Partners",
     "titleLine1": "Co-Organisers",

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin, Lock } from 'lucide-react';
 import textData from '../locales/en.json';
 import Header from './Header';
 import Logo from './Logo';
@@ -114,9 +114,14 @@ export default function Hero() {
                 className="transition-transform duration-500 group-hover:translate-x-1"
               />
             </a>
-            <p className="mt-5 font-mono text-[9px] tracking-widest2 uppercase text-zinc-400">
-              {t('hero.ctaNote')}
-            </p>
+            <div className="flex items-center justify-center gap-2 md:gap-3 mt-10 md:mt-8 px-5 py-2.5 md:px-6 md:py-2 rounded-full border border-white/20 bg-black/40 backdrop-blur-md w-fit mx-auto max-w-[90vw]">
+              <Lock className="w-3.5 h-3.5 md:w-3 md:h-3 text-white shrink-0" aria-hidden="true" />
+              <div className="flex flex-col md:flex-row items-center text-center text-[11px] md:text-xs uppercase tracking-wider md:tracking-[0.2em] text-white font-medium leading-tight">
+                <span>BY INVITATION ONLY</span>
+                <span className="hidden md:inline mx-2">·</span>
+                <span>STRICTLY LIMITED SEATS</span>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>

@@ -11,7 +11,7 @@ export default function Agenda() {
   const items = textData.agenda.items;
 
   return (
-    <section ref={ref} className="relative bg-ink-950 pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-44 lg:pb-52">
+    <section ref={ref} className="relative bg-ink-950 pt-8 md:pt-12 pb-20 md:pb-28 lg:pb-36">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
