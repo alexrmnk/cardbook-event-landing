@@ -184,16 +184,16 @@ export default function About() {
                 {AVATAR_PROFILES.map((profile) => (
                   <div
                     key={profile.href}
-                    className="flex flex-row items-center md:flex-col md:items-start text-left md:text-center gap-4 md:gap-3 w-full min-w-0"
+                    className="flex flex-row items-center md:flex-col md:items-center text-left md:text-center gap-4 md:gap-3 w-full min-w-0"
                   >
                     <img
                       src={profile.src}
                       alt={profile.alt}
                       loading="lazy"
                       draggable={false}
-                      className="w-16 h-16 shrink-0 md:w-20 md:h-20 rounded-full object-cover md:mx-auto border-2 border-[#0e1013]"
+                      className="w-16 h-16 shrink-0 md:w-20 md:h-20 rounded-full object-cover border-2 border-[#0e1013]"
                     />
-                    <div className="flex flex-col items-start md:items-center min-w-0">
+                    <div className="flex flex-col items-start md:items-center min-w-0 w-full">
                       <p className="text-white font-medium text-sm md:text-base">
                         {profile.name}
                       </p>
