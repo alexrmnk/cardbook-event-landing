@@ -12,9 +12,9 @@ const CO_ORGANISER_LOGOS = [
 ];
 
 const AVATAR_PROFILES = [
-  { href: 'https://www.instagram.com/glaybman_elli/', src: '/media/elli.jpg', alt: 'Elli' },
-  { href: 'https://www.instagram.com/alexlyhovez/', src: '/media/alex.jpg', alt: 'Alex' },
-  { href: 'https://www.instagram.com/alenamor.marketing/', src: '/media/alona.jpg', alt: 'Alena' },
+  { href: 'https://www.linkedin.com/in/elli-glaybman-0b6a8a127/', src: '/media/elli.jpg', alt: 'Elli' },
+  { href: 'https://www.linkedin.com/in/alex-lyhovez-mba/', src: '/media/alex.jpg', alt: 'Alex' },
+  { href: 'https://www.linkedin.com/in/alena-morozova-625969238/', src: '/media/alona.jpg', alt: 'Alena' },
 ];
 
 function useReveal(options = {}) {
@@ -188,7 +188,7 @@ export default function About() {
                       rel="noopener noreferrer"
                       className="text-[10px] text-zinc-400 hover:text-white mt-2 block text-center uppercase tracking-wider transition-colors duration-300"
                     >
-                      Instagram ↗
+                      LinkedIn ↗
                     </a>
                   </div>
                 ))}
