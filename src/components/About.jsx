@@ -12,9 +12,27 @@ const CO_ORGANISER_LOGOS = [
 ];
 
 const AVATAR_PROFILES = [
-  { href: 'https://www.linkedin.com/in/elli-glaybman-0b6a8a127/', src: '/media/elli.jpg', alt: 'Elli' },
-  { href: 'https://www.linkedin.com/in/alex-lyhovez-mba/', src: '/media/alex.jpg', alt: 'Alex' },
-  { href: 'https://www.linkedin.com/in/alena-morozova-625969238/', src: '/media/alona.jpg', alt: 'Alena' },
+  {
+    href: 'https://www.linkedin.com/in/elli-glaybman-0b6a8a127/',
+    src: '/media/elli.jpg',
+    alt: 'Elli Glaybman',
+    name: 'Elli Glaybman',
+    title: 'CO-FOUNDER & CEO',
+  },
+  {
+    href: 'https://www.linkedin.com/in/alex-lyhovez-mba/',
+    src: '/media/alex.jpg',
+    alt: 'Alex Lyhovez',
+    name: 'Alex Lyhovez',
+    title: 'CO-FOUNDER & HEAD OF BUSINESS GROWTH',
+  },
+  {
+    href: 'https://www.linkedin.com/in/alena-morozova-625969238/',
+    src: '/media/alona.jpg',
+    alt: 'Alena Morozov',
+    name: 'Alena Morozov',
+    title: 'CO-FOUNDER AND DIRECTOR OF TECHNICAL PRODUCT & MARKETING',
+  },
 ];
 
 function useReveal(options = {}) {
@@ -43,7 +61,7 @@ const lineVariants = {
 const stats = [
   { value: t('about.stat1Value'), label: t('about.stat1Label') },
   { value: t('about.stat2Value'), label: t('about.stat2Label') },
-  { value: t('about.stat3Value'), label: t('about.stat3Label'), nowrap: true },
+  { value: t('about.stat3Value'), label: t('about.stat3Label') },
 ];
 
 export default function About() {
@@ -83,24 +101,16 @@ export default function About() {
           {/* Left column — heading + stats */}
           <div>
             {/* Heading */}
-            <div className="overflow-hidden mb-2">
+            <div className="overflow-hidden mb-12 md:mb-16">
               <motion.h2
                 initial={{ y: '100%', opacity: 0 }}
                 animate={isInView ? { y: '0%', opacity: 1 } : {}}
                 transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="section-heading"
               >
-                {t('about.titleLine1')}
-              </motion.h2>
-            </div>
-            <div className="overflow-hidden mb-12 md:mb-16">
-              <motion.h2
-                initial={{ y: '100%', opacity: 0 }}
-                animate={isInView ? { y: '0%', opacity: 1 } : {}}
-                transition={{ duration: 1.1, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="section-heading text-accent"
-              >
-                {t('about.titleLine2')}
+                {t('about.titleLine1')}{' '}
+                <br className="hidden md:block" />
+                <span className="text-[#7541F6]">{t('about.titleLine2')}</span>
               </motion.h2>
             </div>
 
@@ -113,14 +123,12 @@ export default function About() {
                   initial="hidden"
                   animate={isInView ? 'visible' : 'hidden'}
                   custom={0.35 + i * 0.12}
-                  className={`flex flex-col gap-1.5 py-6 min-w-0 ${i < 2 ? 'border-r border-ink-700 pr-4 md:pr-6' : ''} ${i > 0 ? 'pl-4 md:pl-6' : ''} ${i === 2 ? 'pr-0' : ''}`}
+                  className={`flex flex-col gap-1.5 py-6 min-w-0 ${i < 2 ? 'border-r border-ink-700 pr-3 md:pr-6' : ''} ${i > 0 ? 'pl-3 md:pl-6' : ''} ${i === 2 ? 'pr-0' : ''}`}
                 >
-                  <span
-                    className={`font-serif text-3xl md:text-4xl font-medium text-ink-100 leading-none ${stat.nowrap ? 'whitespace-nowrap' : ''}`}
-                  >
+                  <span className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-ink-100 leading-none">
                     {stat.value}
                   </span>
-                  <span className="font-mono text-xs tracking-widest2 uppercase text-ink-200">
+                  <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-zinc-500 max-w-[120px] leading-tight">
                     {stat.label}
                   </span>
                 </motion.div>
@@ -129,13 +137,13 @@ export default function About() {
           </div>
 
           {/* Right column — body copy */}
-          <div className="flex flex-col gap-7">
+          <div className="flex flex-col min-w-0">
             <motion.p
               variants={revealVariants}
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
               custom={0.4}
-              className="font-sans text-base md:text-lg text-ink-300 leading-relaxed font-light"
+              className="text-zinc-400 leading-relaxed text-base md:text-lg mb-6 last:mb-0"
             >
               {t('about.body1')}
             </motion.p>
@@ -144,7 +152,7 @@ export default function About() {
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
               custom={0.52}
-              className="font-sans text-base md:text-lg text-ink-300 leading-relaxed font-light"
+              className="text-zinc-400 leading-relaxed text-base md:text-lg mb-6 last:mb-0"
             >
               {t('about.body2')}
             </motion.p>
@@ -159,11 +167,11 @@ export default function About() {
           transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="mt-28 md:mt-40"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center mb-14 md:mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start md:items-center mb-14 md:mb-16">
             <div>
               <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-ink-100 font-medium leading-snug mb-4">
-                {t('about.cultureTitleLine1')}
-                <br />
+                {t('about.cultureTitleLine1')}{' '}
+                <br className="hidden md:block" />
                 {t('about.cultureTitleLine2')}
               </h3>
               <p className="font-sans text-base md:text-lg text-zinc-300 font-light leading-relaxed max-w-lg">
@@ -171,25 +179,36 @@ export default function About() {
               </p>
             </div>
 
-            <div className="flex justify-start md:justify-end">
-              <div className="flex gap-6 items-start">
+            <div className="min-w-0">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 w-full">
                 {AVATAR_PROFILES.map((profile) => (
-                  <div key={profile.href} className="flex flex-col items-center">
+                  <div
+                    key={profile.href}
+                    className="flex flex-row items-center md:flex-col md:items-start text-left md:text-center gap-4 md:gap-3 w-full min-w-0"
+                  >
                     <img
                       src={profile.src}
                       alt={profile.alt}
                       loading="lazy"
                       draggable={false}
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-[#0e1013]"
+                      className="w-16 h-16 shrink-0 md:w-20 md:h-20 rounded-full object-cover md:mx-auto border-2 border-[#0e1013]"
                     />
-                    <a
-                      href={profile.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[10px] text-zinc-400 hover:text-white mt-2 block text-center uppercase tracking-wider transition-colors duration-300"
-                    >
-                      LinkedIn ↗
-                    </a>
+                    <div className="flex flex-col items-start md:items-center min-w-0">
+                      <p className="text-white font-medium text-sm md:text-base">
+                        {profile.name}
+                      </p>
+                      <p className="text-zinc-400 text-[10px] uppercase tracking-wider leading-snug mt-1 max-w-[200px] md:max-w-[150px]">
+                        {profile.title}
+                      </p>
+                      <a
+                        href={profile.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[10px] text-zinc-500 hover:text-white uppercase tracking-widest mt-2 transition-colors duration-300"
+                      >
+                        LinkedIn ↗
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>

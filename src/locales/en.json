@@ -22,39 +22,39 @@
     "divider": "·"
   },
   "about": {
-    "eyebrow": "About",
-    "titleLine1": "Networkers",
-    "titleLine2": "for Networkers",
-    "body1": "The Networking Club is an intimate evening for founders, C-level executives, and leaders who value meaningful connection. Every guest joins through a straightforward profile verification — creating a curated room where every conversation is worth your time.",
-    "body2": "From the opening keynote to AI-powered matchmaking and open networking, the evening follows a thoughtful programme built around genuine dialogue. CardBook brings it together with intention, curation, and care.",
+    "eyebrow": "About the Networking Club",
+    "titleLine1": "Turning Relationships",
+    "titleLine2": "into Opportunities.",
+    "body1": "The Networking Club is a curated gathering of tech founders, investors, C-level executives, business owners, and ecosystem leaders who believe that the right relationship can unlock the next partnership, investment, client, or market opportunity.",
+    "body2": "As part of the CardBook Ecosystem, we bring together leaders from Israel's Hebrew-speaking, English-speaking, and Russian-speaking business communities, creating a rare environment where different business cultures meet, trusted connections are formed, and opportunities cross borders, industries, and networks.",
     "stat1Value": "200+",
     "stat1Label": "Invited guests",
-    "stat2Value": "1",
-    "stat2Label": "Evening only",
+    "stat2Value": "25,000+",
+    "stat2Label": "Combined network reach",
     "stat3Value": "C-Suite",
-    "stat3Label": "Exclusive audience",
+    "stat3Label": "Decision makers",
     "pullQuote": "A curated room. A clear programme. Connections that matter.",
-    "cultureTitleLine1": "We are creating a new culture",
-    "cultureTitleLine2": "of networking",
-    "cultureSubtitle": "Developing AI-powered tools to help you achieve your goals.",
-    "coOrganisersEyebrow": "Co-Organisers",
+    "cultureTitleLine1": "Creating A New Culture",
+    "cultureTitleLine2": "of Networking.",
+    "cultureSubtitle": "Helping professionals unlock the hidden value of their relationships.",
+    "coOrganisersEyebrow": "Our Ecosystem",
     "contactUs": "Contact us"
   },
   "roadmap": {
     "tag": "Process",
-    "title": "How to Join the Evening",
+    "title": "How to Join",
     "steps": [
       {
-        "title": "01. Access Connect",
-        "description": "Open the Connect module inside the CardBook Ecosystem to begin your registration path."
+        "title": "01. Request an Invitation",
+        "description": "Complete a short registration form on the Connect platform and tell us about yourself, your business, and what opportunities you are looking for."
       },
       {
-        "title": "02. Profile Verification",
-        "description": "Submit your request. Our administration audits profiles manually to ensure a high-caliber C-suite presence."
+        "title": "02. Profile Review",
+        "description": "To maintain a high-quality environment, all applications are reviewed by the CardBook team. Our goal is to ensure a relevant mix of founders, investors, executives, and business leaders."
       },
       {
-        "title": "03. Receive Invitation",
-        "description": "Upon successful vetting, your formal digital entry ticket with passcodes is delivered straight to your inbox."
+        "title": "03. Confirm Your Attendance",
+        "description": "Approved guests will receive an invitation with event details, access to Connect, and the opportunity to start building meaningful connections before the event begins."
       }
     ]
   },
@@ -63,24 +63,24 @@
     "items": [
       {
         "index": "01",
-        "title": "Vetted Community",
-        "desc": "Access is granted upon a standard profile verification to ensure a highly relevant professional environment for all attendees."
+        "title": "Curated Audience",
+        "desc": "Every attendee is carefully reviewed to ensure a high-quality environment of founders, investors, executives, business owners, and ecosystem leaders."
       },
       {
         "index": "02",
-        "title": "CardBook Members Access",
-        "desc": "Complimentary entrance and free registration for all verified members of the CardBook Ecosystem."
+        "title": "CardBook Ecosystem Members",
+        "desc": "Verified CardBook members receive priority access and complimentary registration as part of the ecosystem benefits."
       },
       {
         "index": "03",
-        "title": "Drinks & Bar",
+        "title": "Panthera Bar Experience",
         "badge": "Payment Bar",
-        "desc": "A premium selection of spirits, wines, and signature cocktails will be available for purchase throughout the evening."
+        "desc": "Enjoy Panthera's premium bar and social atmosphere throughout the evening, with a selection of drinks available for purchase."
       },
       {
         "index": "04",
-        "title": "Complimentary Snacks",
-        "desc": "Enjoy a curated selection of complimentary finger foods and light snacks during the networking sessions."
+        "title": "Networking Reception",
+        "desc": "Complimentary finger food and light refreshments will be served throughout the event, creating a comfortable environment for meaningful conversations and new connections."
       }
     ]
   },
