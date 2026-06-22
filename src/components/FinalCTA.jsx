@@ -26,7 +26,7 @@ export default function FinalCTA() {
           aria-hidden="true"
         >
           <source
-            src="https://pub-b7756046fce648dab5deb0c7fd91a650.r2.dev/video_back.mp4"
+            src="https://assets.cardbookecosystem.com/video_back.mp4"
             type="video/mp4"
           />
         </video>
