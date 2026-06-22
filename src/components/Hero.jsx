@@ -39,7 +39,7 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
           aria-hidden="true"
         >
-          <source src="https://zsbvvwzdczfrmsaxowpg.supabase.co/storage/v1/object/public/landing-media-ecosystem/video_back.mp4" type="video/mp4" />
+          <source src="https://pub-b7756046fce648dab5deb0c7fd91a650.r2.dev/video_back.mp4" type="video/mp4" />
         </video>
       </motion.div>
 

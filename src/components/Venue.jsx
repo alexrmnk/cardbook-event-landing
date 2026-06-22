@@ -14,7 +14,7 @@ const ASPECT_WEIGHTS = {
 };
 
 const VENUE_VIDEO_SRC =
-  'https://zsbvvwzdczfrmsaxowpg.supabase.co/storage/v1/object/public/landing-media-ecosystem/video_back.mp4';
+  'https://pub-b7756046fce648dab5deb0c7fd91a650.r2.dev/video_back.mp4';
 
 const VENUE_MEDIA = [
   { id: 1,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/1.jpeg'  },
@@ -22,9 +22,9 @@ const VENUE_MEDIA = [
   { id: 3,  type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/3.jpeg'  },
   { id: 4,  type: 'image', aspectRatio: 'aspect-[9/16]',  mediaSrc: '/media/4.jpeg'  },
   { id: 5,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/5.jpeg'  },
-  { id: 6,  type: 'video', aspectRatio: 'aspect-[9/16]',  mediaSrc: 'https://zsbvvwzdczfrmsaxowpg.supabase.co/storage/v1/object/public/landing-media-ecosystem/pantera_1.mp4'  },
+  { id: 6,  type: 'video', aspectRatio: 'aspect-[9/16]',  mediaSrc: 'https://pub-b7756046fce648dab5deb0c7fd91a650.r2.dev/pantera_1.mp4'  },
   { id: 7,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/7.jpeg'  },
-  { id: 8,  type: 'video', aspectRatio: 'aspect-[9/16]',  mediaSrc: 'https://zsbvvwzdczfrmsaxowpg.supabase.co/storage/v1/object/public/landing-media-ecosystem/pantera_2.mp4'  },
+  { id: 8,  type: 'video', aspectRatio: 'aspect-[9/16]',  mediaSrc: 'https://pub-b7756046fce648dab5deb0c7fd91a650.r2.dev/pantera_2.mp4'  },
   { id: 9,  type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/9.jpeg'  },
   { id: 10, type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/10.jpeg' },
   { id: 11, type: 'image', aspectRatio: 'aspect-[9/16]',  mediaSrc: '/media/8.jpeg'},
