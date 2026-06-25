@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import textData from '../locales/en.json';
@@ -64,8 +65,8 @@ export default function Sponsorship() {
           </motion.h2>
 
           <motion.div {...anim(0.2)}>
-            <a
-              href="#"
+            <Link
+              to="/sponsors"
               className="inline-flex items-center gap-2.5
                 px-8 py-3.5 rounded-lg
                 border border-white/20 bg-white/[0.04]
@@ -75,7 +76,7 @@ export default function Sponsorship() {
             >
               <span>{t('sponsorship.cta')}</span>
               <ArrowRight className="size-4 shrink-0" strokeWidth={1.5} aria-hidden="true" />
-            </a>
+            </Link>
           </motion.div>
         </div>
 
