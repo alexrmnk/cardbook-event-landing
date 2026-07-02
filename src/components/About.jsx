@@ -27,18 +27,18 @@ const AVATAR_PROFILES = [
     title: 'CO-FOUNDER & HEAD OF BUSINESS GROWTH',
   },
   {
-    href: 'https://www.linkedin.com/in/igal-margulis-b62005188/',
-    src: '/media/margulis.jpg',
-    alt: 'Igal Margulis',
-    name: 'Igal Margulis',
-    title: 'Partner',
-  },
-  {
     href: 'https://www.linkedin.com/in/alena-morozova-625969238/',
     src: '/media/alona.jpg',
     alt: 'Alena Morozov',
     name: 'Alena Morozov',
     title: 'CO-FOUNDER AND DIRECTOR OF TECHNICAL PRODUCT & MARKETING',
+  },
+  {
+    href: 'https://www.linkedin.com/in/igal-margulis-b62005188/',
+    src: '/media/margulis.jpg',
+    alt: 'Igal Margulis',
+    name: 'Igal Margulis',
+    title: 'Partner',
   },
 ];
 
