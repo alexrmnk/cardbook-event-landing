@@ -27,6 +27,13 @@ const AVATAR_PROFILES = [
     title: 'CO-FOUNDER & HEAD OF BUSINESS GROWTH',
   },
   {
+    href: 'https://www.linkedin.com/in/igal-margulis-b62005188/',
+    src: '/media/margulis.jpg',
+    alt: 'Igal Margulis',
+    name: 'Igal Margulis',
+    title: 'Partner',
+  },
+  {
     href: 'https://www.linkedin.com/in/alena-morozova-625969238/',
     src: '/media/alona.jpg',
     alt: 'Alena Morozov',
@@ -180,7 +187,7 @@ export default function About() {
             </div>
 
             <div className="min-w-0">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 w-full">
                 {AVATAR_PROFILES.map((profile) => (
                   <div
                     key={profile.href}
