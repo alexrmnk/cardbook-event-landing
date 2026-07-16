@@ -25,7 +25,7 @@ const EDGE_FADE_RIGHT =
 function LogoTrack({ items, ariaHidden = false }) {
   return (
     <div
-      className="flex shrink-0 items-center gap-8 md:gap-20 lg:gap-24"
+      className="flex shrink-0 items-center gap-10 pr-10 md:gap-20 md:pr-20 lg:gap-24 lg:pr-24"
       aria-hidden={ariaHidden || undefined}
     >
       {items.map((sponsor, index) => (
@@ -40,7 +40,7 @@ function LogoTrack({ items, ariaHidden = false }) {
         >
           <img
             alt={sponsor.alt}
-            className="h-6 w-auto select-none object-contain opacity-45 brightness-0 invert transition-opacity duration-300 group-hover:opacity-100 md:h-11"
+            className="block h-6 w-auto max-w-none select-none object-contain opacity-45 brightness-0 invert transition-opacity duration-300 group-hover:opacity-100 md:h-11"
             decoding="async"
             height="auto"
             loading="eager"
