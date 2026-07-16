@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
+import SponsorLogos from './components/SponsorLogos';
 import ValueProps from './components/ValueProps';
 import Roadmap from './components/Roadmap';
 import TickerMarquee from './components/TickerMarquee';
@@ -16,6 +17,7 @@ function MainPage() {
   return (
     <div className="noise-overlay bg-ink-950 text-ink-100 min-h-screen overflow-x-hidden">
       <Hero />
+      <SponsorLogos />
       <About />
       <ValueProps />
       <Roadmap />
