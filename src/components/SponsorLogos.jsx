@@ -12,6 +12,20 @@ const SPONSORS = [
     alt: 'Smartexe',
     href: 'https://smartexe.com',
   },
+  {
+    src: '/media/sponsor-logo/anat-cherpak.png',
+    alt: 'Anat Cherpak',
+  },
+  {
+    src: '/media/sponsor-logo/deal%20ventures.png',
+    alt: 'Deal Ventures',
+    href: 'https://www.linkedin.com/in/ido-yonesi/',
+  },
+  {
+    src: '/media/sponsor-logo/acro.png',
+    alt: 'Acro',
+    href: 'https://acronadlan.com/en/',
+  },
 ];
 
 const TRACK_ITEMS = Array.from({ length: 8 }, () => SPONSORS).flat();
@@ -28,16 +42,8 @@ function LogoTrack({ items, ariaHidden = false }) {
       className="flex shrink-0 items-center gap-10 pr-10 md:gap-20 md:pr-20 lg:gap-24 lg:pr-24"
       aria-hidden={ariaHidden || undefined}
     >
-      {items.map((sponsor, index) => (
-        <a
-          key={`${sponsor.alt}-${index}`}
-          href={sponsor.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex shrink-0 items-center"
-          aria-label={ariaHidden ? undefined : `Visit ${sponsor.alt} website`}
-          tabIndex={ariaHidden ? -1 : undefined}
-        >
+      {items.map((sponsor, index) => {
+        const logo = (
           <img
             alt={sponsor.alt}
             className="block h-6 w-auto max-w-none select-none object-contain opacity-45 brightness-0 invert transition-opacity duration-300 group-hover:opacity-100 md:h-11"
@@ -47,8 +53,34 @@ function LogoTrack({ items, ariaHidden = false }) {
             src={sponsor.src}
             width="auto"
           />
-        </a>
-      ))}
+        );
+
+        if (!sponsor.href) {
+          return (
+            <div
+              key={`${sponsor.alt}-${index}`}
+              className="group flex shrink-0 items-center"
+              aria-hidden={ariaHidden || undefined}
+            >
+              {logo}
+            </div>
+          );
+        }
+
+        return (
+          <a
+            key={`${sponsor.alt}-${index}`}
+            href={sponsor.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex shrink-0 items-center"
+            aria-label={ariaHidden ? undefined : `Visit ${sponsor.alt}`}
+            tabIndex={ariaHidden ? -1 : undefined}
+          >
+            {logo}
+          </a>
+        );
+      })}
     </div>
   );
 }
