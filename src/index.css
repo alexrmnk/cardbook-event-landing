@@ -53,7 +53,26 @@
   }
 }
 
+@keyframes sponsor-marquee {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @layer utilities {
+  .sponsor-marquee-track {
+    animation: sponsor-marquee 100s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sponsor-marquee-track {
+      animation: none;
+    }
+  }
+
   .text-balance {
     text-wrap: balance;
   }

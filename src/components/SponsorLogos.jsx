@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-
 const SPONSORS = [
   {
     src: '/media/sponsor-logo/mellius-logo.svg',
@@ -15,6 +12,7 @@ const SPONSORS = [
   {
     src: '/media/sponsor-logo/anat-cherpak.png',
     alt: 'Anat Cherpak',
+    href: 'https://www.linkedin.com/in/anat-cherpak-%D7%A2%D7%A0%D7%AA-%D7%A6-%D7%A8%D7%A4%D7%A7-%D7%9E%D7%97%D7%A0%D7%90%D7%99-142b2822/',
   },
   {
     src: '/media/sponsor-logo/deal%20ventures.png',
@@ -25,6 +23,21 @@ const SPONSORS = [
     src: '/media/sponsor-logo/acro.png',
     alt: 'Acro',
     href: 'https://acronadlan.com/en/',
+  },
+  {
+    src: '/media/sponsor-logo/art-moment.png',
+    alt: 'Art Moment',
+    href: 'https://www.instagram.com/anna.mirel/',
+  },
+  {
+    src: '/media/sponsor-logo/TBC.svg',
+    alt: 'TBC',
+    href: 'https://tbcbank.ge/en',
+  },
+  {
+    src: '/media/sponsor-logo/agile.png',
+    alt: 'Agile',
+    href: 'https://getagile.ai/',
   },
 ];
 
@@ -46,7 +59,7 @@ function LogoTrack({ items, ariaHidden = false }) {
         const logo = (
           <img
             alt={sponsor.alt}
-            className="block h-6 w-auto max-w-none select-none object-contain opacity-45 brightness-0 invert transition-opacity duration-300 group-hover:opacity-100 md:h-11"
+            className="block h-6 w-auto max-w-none select-none object-contain opacity-45 brightness-0 invert transition-opacity duration-300 group-hover/link:opacity-100 md:h-11"
             decoding="async"
             height="auto"
             loading="eager"
@@ -59,7 +72,7 @@ function LogoTrack({ items, ariaHidden = false }) {
           return (
             <div
               key={`${sponsor.alt}-${index}`}
-              className="group flex shrink-0 items-center"
+              className="group/link flex shrink-0 items-center"
               aria-hidden={ariaHidden || undefined}
             >
               {logo}
@@ -73,7 +86,7 @@ function LogoTrack({ items, ariaHidden = false }) {
             href={sponsor.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex shrink-0 items-center"
+            className="group/link relative z-10 flex shrink-0 items-center rounded-sm outline-none transition-opacity focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-accent/60"
             aria-label={ariaHidden ? undefined : `Visit ${sponsor.alt}`}
             tabIndex={ariaHidden ? -1 : undefined}
           >
@@ -86,8 +99,6 @@ function LogoTrack({ items, ariaHidden = false }) {
 }
 
 export default function SponsorLogos() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <section aria-label="Event sponsors" className="relative w-full bg-ink-950">
       <p className="pointer-events-none px-6 pb-3 text-center font-mono text-[8px] tracking-widest2 uppercase text-ink-500/90 md:hidden">
@@ -95,25 +106,11 @@ export default function SponsorLogos() {
       </p>
 
       <div className="relative border-y border-ink-800">
-        <div
-          className="relative overflow-hidden py-5 md:py-6"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <motion.div
-            className="flex w-max will-change-transform"
-            initial={{ x: '-50%' }}
-            animate={{ x: '0%' }}
-            transition={{
-              repeat: Infinity,
-              ease: 'linear',
-              duration: isHovered ? 80 : 60,
-              repeatType: 'loop',
-            }}
-          >
+        <div className="group/marquee relative overflow-hidden py-5 md:py-6">
+          <div className="sponsor-marquee-track flex w-max will-change-transform group-hover/marquee:[animation-play-state:paused]">
             <LogoTrack items={TRACK_ITEMS} />
             <LogoTrack items={TRACK_ITEMS} ariaHidden />
-          </motion.div>
+          </div>
 
           <div
             aria-hidden="true"
