@@ -42,6 +42,11 @@ const SPONSORS = [
     alt: 'Agile',
     href: 'https://getagile.ai/',
   },
+  {
+    src: '/media/sponsor-logo/AB_media.png',
+    alt: 'AB media',
+    href: 'https://www.instagram.com/ab.media.il',
+  },
 ];
 
 const TRACK_ITEMS = Array.from({ length: 8 }, () => SPONSORS).flat();
