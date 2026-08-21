@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight, Lock } from 'lucide-react';
-import textData from '../locales/en.json';
+import textData from '../../../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 

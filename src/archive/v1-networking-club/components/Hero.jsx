@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin, Lock } from 'lucide-react';
-import textData from '../locales/en.json';
+import textData from '../../../locales/en.json';
 import Header from './Header';
-import Logo from './Logo';
+import Logo from '../../../components/Logo';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 

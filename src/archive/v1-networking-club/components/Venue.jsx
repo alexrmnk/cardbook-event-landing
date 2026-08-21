@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { MapPin, ArrowUpRight, ArrowRight } from 'lucide-react';
-import textData from '../locales/en.json';
+import textData from '../../../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 

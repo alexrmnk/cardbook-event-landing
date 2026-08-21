@@ -1,0 +1,32 @@
+import Hero from './components/Hero';
+import SponsorLogos from './components/SponsorLogos';
+import ValueProps from './components/ValueProps';
+import Roadmap from './components/Roadmap';
+import TickerMarquee from './components/TickerMarquee';
+import About from './components/About';
+import Venue from './components/Venue';
+import Agenda from './components/Agenda';
+import PastEvents from './components/PastEvents';
+import Sponsorship from './components/Sponsorship';
+import FinalCTA from './components/FinalCTA';
+import Footer from '../../components/Footer';
+
+export default function Home() {
+  return (
+    <div className="noise-overlay bg-ink-950 text-ink-100 min-h-screen overflow-x-hidden">
+      <Hero />
+      <SponsorLogos />
+      <About />
+      <ValueProps />
+      <Roadmap />
+      <TickerMarquee />
+      <Venue />
+      <Agenda />
+      <PastEvents />
+      <TickerMarquee />
+      <Sponsorship />
+      <FinalCTA />
+      <Footer />
+    </div>
+  );
+}

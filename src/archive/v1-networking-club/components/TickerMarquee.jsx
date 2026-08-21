@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import textData from '../locales/en.json';
+import textData from '../../../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 

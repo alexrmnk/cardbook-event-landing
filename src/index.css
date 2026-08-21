@@ -10,7 +10,7 @@
   body {
     background-color: #060608;
     color: #D4D4E0;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Outfit', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -49,13 +49,32 @@
     @apply inline-flex items-center gap-3 px-8 py-4 rounded-lg
            bg-[#7541F6] text-white font-sans text-sm tracking-widest uppercase
            hover:bg-white hover:text-black
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light
+           focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950
            transition-colors duration-300;
+  }
+
+  .nav-link {
+    @apply inline-flex items-center rounded-sm text-sm uppercase tracking-wide
+           text-ink-200 transition-colors duration-300 hover:text-white
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
   }
 
   .noise-overlay::after {

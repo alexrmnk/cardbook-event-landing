@@ -1,100 +1,67 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion, useAnimationControls, useInView } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import textData from '../locales/en.json';
+import { motion, useReducedMotion } from 'framer-motion';
+import CircularGallery from './CircularGallery';
 
-const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
+const STATS = [
+  { value: '5,000+', label: 'entrepreneurs, investors & leaders connected' },
+  { value: '3,000+', label: 'meaningful introductions made' },
+  { value: '1,000+', label: 'partnerships started' },
+];
 
-const PAST_EVENT_IMAGES = Array.from(
-  { length: 11 },
-  (_, i) => `/media/past-events/${i + 1}.jpg`,
-);
-const CAROUSEL_IMAGES = [...PAST_EVENT_IMAGES, ...PAST_EVENT_IMAGES];
+const GALLERY_ITEMS = [
+  { image: '/new/1e.webp', text: 'Tel Aviv' },
+  { image: '/new/2e.webp', text: 'The Room' },
+  { image: '/new/3e.webp', text: 'Founders' },
+  { image: '/new/4e.webp', text: 'On Stage' },
+  { image: '/new/5e.webp', text: 'Introductions' },
+  { image: '/new/6e.webp', text: 'Deal Rooms' },
+  { image: '/new/7e.webp', text: 'The Circle' },
+  { image: '/new/8e.webp', text: 'After Hours' },
+];
 
 export default function PastEvents() {
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const controls = useAnimationControls();
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px 0px' });
-
-  const [isHovered, setIsHovered] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const shouldPlay = isInView && !isHovered && !isDragging;
-
-  useEffect(() => {
-    if (shouldPlay) {
-      controls.start({
-        x: '-50%',
-        transition: {
-          duration: 40,
-          ease: 'linear',
-          repeat: Infinity,
-        },
-      });
-    } else {
-      controls.stop();
-    }
-  }, [shouldPlay, controls]);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative bg-ink-950 border-t border-ink-800 py-20 md:py-28 overflow-hidden"
-    >
-      {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
-        >
-          <div>
-            <p className="text-white/50 tracking-widest uppercase text-sm mb-4">
-              {t('pastEvents.eyebrow')}
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl text-white leading-tight">
-              {t('pastEvents.title')}
-            </h2>
-          </div>
+    <section id="past-events" className="py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <p className="font-mono text-xs uppercase tracking-widest2 text-accent-light">
+          Past Events
+        </p>
 
-          <a href={t('hero.ctaHref')} className="btn-primary group shrink-0">
-            <span className="tracking-widest uppercase text-xs">{t('hero.cta')}</span>
-            <ArrowRight
-              size={14}
-              className="transition-transform duration-500 group-hover:translate-x-1"
-            />
-          </a>
-        </motion.div>
-      </div>
+        <h2 className="mb-16 mt-6 max-w-3xl font-sans text-3xl font-bold leading-[1.15] tracking-tight text-white text-balance md:text-5xl">
+          Every CardBook event is built to create outcomes — not just conversations.
+        </h2>
 
-      {/* Infinite draggable carousel */}
-      <div className="w-full overflow-hidden">
-        <motion.div
-          ref={trackRef}
-          className="flex w-max gap-4 md:gap-5 cursor-grab active:cursor-grabbing will-change-transform"
-          animate={controls}
-          drag="x"
-          dragMomentum={false}
-          dragElastic={0.08}
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={() => setIsDragging(false)}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          style={{ touchAction: 'pan-y' }}
-        >
-          {CAROUSEL_IMAGES.map((src, i) => (
-            <img
-              key={`${src}-${i}`}
-              src={src}
-              alt={`${t('pastEvents.title')} ${(i % PAST_EVENT_IMAGES.length) + 1}`}
-              draggable={false}
-              className="h-[280px] md:h-[360px] lg:h-[400px] w-auto shrink-0 rounded-xl border border-white/10 select-none"
-            />
+        <div className="grid grid-cols-1 gap-10 border-t border-white/10 pt-12 md:grid-cols-3">
+          {STATS.map((stat, index) => (
+            <motion.div
+              key={stat.value}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.12,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              <p className="mb-4 text-5xl font-bold tracking-tight text-white md:text-6xl">
+                {stat.value}
+              </p>
+              <p className="max-w-xs leading-relaxed text-zinc-400">{stat.label}</p>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
+
+      <div className="mt-12 h-[380px] w-full overflow-hidden px-0 sm:h-[460px] md:h-[560px]">
+        <CircularGallery items={GALLERY_ITEMS} />
+      </div>
+
+      <p className="mx-auto mt-16 max-w-2xl px-6 text-center text-lg font-medium leading-relaxed text-zinc-300 md:text-xl">
+        From Tel Aviv to the global CardBook network — this is what happens when the right
+        people are in the room.
+      </p>
     </section>
   );
 }

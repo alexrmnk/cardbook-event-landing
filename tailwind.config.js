@@ -18,6 +18,8 @@ export default {
         },
         accent: {
           DEFAULT: '#7F53E5',
+          // Lightened brand tint — passes WCAG AA on ink backgrounds at small sizes
+          light: '#B298EF',
           dim: 'rgba(127,83,229,0.18)',
           muted: 'rgba(127,83,229,0.45)',
           glow: 'rgba(127,83,229,0.08)',
@@ -26,7 +28,7 @@ export default {
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        sans: ['Outfit', 'system-ui', 'sans-serif'],
         mono: ['"DM Mono"', 'monospace'],
       },
       letterSpacing: {
@@ -41,6 +43,8 @@ export default {
       animation: {
         'fade-in': 'fadeIn 1.2s ease forwards',
         'line-grow': 'lineGrow 1.4s ease forwards',
+        'grid-scroll': 'gridScroll 20s linear infinite',
+        'logo-pulse': 'logoPulse 3s ease-in-out infinite alternate',
       },
       keyframes: {
         fadeIn: {
@@ -50,6 +54,14 @@ export default {
         lineGrow: {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
+        },
+        gridScroll: {
+          '0%': { backgroundPosition: '0 0' },
+          '100%': { backgroundPosition: '0 64px' },
+        },
+        logoPulse: {
+          '0%': { filter: 'drop-shadow(0 0 2px rgba(127,83,229,0.85))' },
+          '100%': { filter: 'drop-shadow(0 0 10px rgba(127,83,229,0.95)) brightness(1.2)' },
         },
       },
     },

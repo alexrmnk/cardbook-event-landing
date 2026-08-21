@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, ArrowLeft } from 'lucide-react';
-import Footer from '../components/Footer';
-import Logo from '../components/Logo';
+import Footer from '../../components/Footer';
+import Logo from '../../components/Logo';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -292,7 +292,7 @@ export default function SponsorsPage() {
       {/* ── Nav ── */}
       <nav className="relative z-20 flex items-center justify-between px-6 md:px-12 lg:px-20 pt-6 pb-4">
         <Link
-          to="/"
+          to="/archive/v1"
           className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-white/40 hover:text-white/80 transition-colors duration-300"
         >
           <ArrowLeft className="size-3.5" strokeWidth={1.5} />

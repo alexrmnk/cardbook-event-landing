@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import textData from '../locales/en.json';
+import textData from '../../../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 
@@ -66,7 +66,7 @@ export default function Sponsorship() {
 
           <motion.div {...anim(0.2)}>
             <Link
-              to="/sponsors"
+              to="/archive/v1/sponsors"
               className="inline-flex items-center gap-2.5
                 px-8 py-3.5 rounded-lg
                 border border-white/20 bg-white/[0.04]
