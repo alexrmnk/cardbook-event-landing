@@ -4,6 +4,8 @@ import NewNavbar from '../components/NewNavbar';
 import PastEvents from '../components/PastEvents';
 import Membership from '../components/Membership';
 import UpcomingEvents from '../components/UpcomingEvents';
+import MoreWaysToConnect from '../components/MoreWaysToConnect';
+import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
 import SponsorLogos from '../archive/v1-networking-club/components/SponsorLogos';
 
@@ -119,6 +121,12 @@ export default function NewHome() {
 
         {/* ── Upcoming events ── */}
         <UpcomingEvents />
+
+        {/* ── More ways to connect ── */}
+        <MoreWaysToConnect />
+
+        {/* ── Closing CTA ── */}
+        <FinalCTA />
       </main>
 
       <Footer />
