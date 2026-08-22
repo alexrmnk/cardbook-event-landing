@@ -10,7 +10,7 @@ const EVENTS = [
       '200+ founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
     cta: 'Join the Waitlist',
     href: '#membership',
-    image: '/new/2e.webp',
+    image: '/new/Networking Club.jpg',
     imageAlt: 'Guests networking at a CardBook Networking Club evening',
   },
   {
@@ -21,7 +21,7 @@ const EVENTS = [
       'A small, curated morning with Elli Glaybman, Founder of CardBook — for founders and business leaders who want direct access to the right conversations, not another networking crowd.',
     cta: 'Join the Waitlist',
     href: '#membership',
-    image: '/new/6e.webp',
+    image: '/new/Breakfast.jpg',
     imageAlt: 'A small curated breakfast conversation between founders',
   },
   {
@@ -32,7 +32,7 @@ const EVENTS = [
       '1,000 people. One network. Infinite opportunities. The largest CardBook event of the year — where the next generation of founders, investors and dealmakers meet.',
     cta: 'Join the Waitlist',
     href: '#membership',
-    image: '/new/4e.webp',
+    image: '/new/Big Conference.jpg',
     imageAlt: 'A full auditorium at the CardBook annual conference',
   },
 ];
@@ -145,7 +145,7 @@ export default function UpcomingEvents() {
 
             <a
               href={event.href}
-              className="self-start rounded-xl border border-white/20 px-6 py-3 text-sm text-white transition-all duration-300 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="self-start rounded-xl bg-white px-6 py-3 text-sm font-medium text-violet-950 transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               {event.cta}
             </a>

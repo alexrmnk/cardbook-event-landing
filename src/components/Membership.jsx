@@ -31,10 +31,10 @@ const BENEFITS = [
 
 function BenefitItem({ icon: Icon, title, detail }) {
   return (
-    <li className="flex items-start gap-4">
+    <li className="flex items-center gap-4">
       <span
         aria-hidden="true"
-        className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border border-accent/25 bg-accent/10"
+        className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent/10"
       >
         <Icon className="size-4 text-accent-light" strokeWidth={1.5} />
       </span>
@@ -281,7 +281,7 @@ export default function Membership() {
         </motion.div>
       </div>
 
-      <div className="mt-16 grid w-full grid-cols-1 gap-x-12 gap-y-6 lg:mt-24 lg:grid-cols-2">
+      <div className="mt-8 grid w-full grid-cols-1 gap-x-12 gap-y-6 lg:mt-10 lg:grid-cols-2">
         <ul className="space-y-6">
           {BENEFITS.slice(0, 3).map((benefit) => (
             <BenefitItem key={benefit.title} {...benefit} />
