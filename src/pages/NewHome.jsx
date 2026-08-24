@@ -32,7 +32,7 @@ export default function NewHome() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
           >

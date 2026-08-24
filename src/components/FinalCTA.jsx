@@ -14,7 +14,7 @@ export default function FinalCTA() {
   return (
     <section
       id="join"
-      className="relative flex flex-col items-center overflow-hidden px-6 py-24 text-center md:py-32"
+      className="relative flex flex-col items-center overflow-hidden px-6 py-12 text-center md:py-24"
     >
       <div
         aria-hidden="true"
@@ -28,14 +28,14 @@ export default function FinalCTA() {
       <div className="relative z-10 flex flex-col items-center">
         <motion.h2
           {...revealUp()}
-          className="mb-6 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-white text-balance md:text-7xl"
+          className="mb-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-white text-balance md:mb-6 md:text-7xl"
         >
           Your next opportunity is one room away.
         </motion.h2>
 
         <motion.p
           {...revealUp(0.1)}
-          className="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-zinc-400"
+          className="mx-auto mb-8 max-w-2xl text-xl leading-relaxed text-zinc-400 md:mb-10"
         >
           Join an upcoming event and become part of the CardBook Networking Club.
         </motion.p>

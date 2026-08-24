@@ -10,7 +10,7 @@ const EVENTS = [
       '200+ founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
     cta: 'Join the Waitlist',
     href: '#membership',
-    image: '/new/Networking Club.jpg',
+    image: encodeURI('/new/Networking Club.jpg'),
     imageAlt: 'Guests networking at a CardBook Networking Club evening',
   },
   {
@@ -32,7 +32,7 @@ const EVENTS = [
       '1,000 people. One network. Infinite opportunities. The largest CardBook event of the year — where the next generation of founders, investors and dealmakers meet.',
     cta: 'Join the Waitlist',
     href: '#membership',
-    image: '/new/Big Conference.jpg',
+    image: encodeURI('/new/Big Conference.jpg'),
     imageAlt: 'A full auditorium at the CardBook annual conference',
   },
 ];
@@ -75,7 +75,7 @@ export default function UpcomingEvents() {
   };
 
   return (
-    <section id="upcoming" className="overflow-hidden py-24">
+    <section id="upcoming" className="overflow-hidden py-12 md:py-24">
       <div className="mx-auto mb-12 flex max-w-7xl flex-col justify-between gap-6 px-6 md:flex-row md:items-end">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest2 text-accent-light">

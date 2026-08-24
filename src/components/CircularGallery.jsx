@@ -6,10 +6,12 @@ import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl'
 
 function debounce(fn, wait) {
   let timeout;
-  return function debounced(...args) {
+  function debounced(...args) {
     clearTimeout(timeout);
     timeout = setTimeout(() => fn.apply(this, args), wait);
-  };
+  }
+  debounced.cancel = () => clearTimeout(timeout);
+  return debounced;
 }
 
 function lerp(from, to, t) {
@@ -233,6 +235,7 @@ class Media {
     img.crossOrigin = 'anonymous';
     img.src = this.image;
     img.onload = () => {
+      if (this.gl.isContextLost?.() || !this.program) return;
       texture.image = img;
       this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
     };
@@ -359,6 +362,7 @@ class App {
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
     this.container.appendChild(this.gl.canvas);
+    this.gl.canvas.style.display = 'block';
   }
 
   createCamera() {
@@ -434,7 +438,7 @@ class App {
   onPageScroll() {
     const deltaY = window.scrollY - this.lastScrollY;
     this.lastScrollY = window.scrollY;
-    if (!this.isVisible || deltaY === 0) return;
+    if (this.reduceMotion || !this.isVisible || deltaY === 0) return;
     this.scroll.target += deltaY * this.scrollSpeed * 0.025;
     this.onCheckDebounce();
   }
@@ -470,8 +474,12 @@ class App {
   }
 
   update() {
+    if (!this.isVisible) {
+      this.raf = null;
+      return;
+    }
+
     this.raf = window.requestAnimationFrame(this.update);
-    if (!this.isVisible) return;
 
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
@@ -505,6 +513,7 @@ class App {
       this.observer = new IntersectionObserver(
         ([entry]) => {
           this.isVisible = entry.isIntersecting;
+          if (this.isVisible && !this.raf) this.update();
         },
         { rootMargin: '200px 0px' },
       );
@@ -513,7 +522,9 @@ class App {
   }
 
   destroy() {
+    this.onCheckDebounce.cancel();
     window.cancelAnimationFrame(this.raf);
+    this.raf = null;
 
     window.removeEventListener('resize', this.onResize);
     this.container.removeEventListener('wheel', this.onWheel);

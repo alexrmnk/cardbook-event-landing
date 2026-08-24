@@ -54,9 +54,18 @@ const BENEFITS = [
   },
 ];
 
-function BenefitCard({ icon: Icon, title, description }) {
+function BenefitCard({ icon: Icon, title, description, index, reduceMotion }) {
   return (
-    <li className="flex gap-3 rounded-2xl border border-white/5 bg-white/5 p-4 transition-colors duration-300 hover:bg-white/10 md:gap-4 md:p-6">
+    <motion.li
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{
+        duration: reduceMotion ? 0 : 0.4,
+        delay: reduceMotion ? 0 : index * 0.1,
+      }}
+      className="flex gap-3 rounded-2xl border border-white/5 bg-white/5 p-4 transition-colors duration-300 hover:bg-white/10 md:gap-4 md:p-6"
+    >
       <span
         aria-hidden="true"
         className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-accent/20 text-accent-light md:size-12"
@@ -67,7 +76,7 @@ function BenefitCard({ icon: Icon, title, description }) {
         <p className="text-base font-semibold text-white md:text-lg">{title}</p>
         <p className="text-sm leading-relaxed text-zinc-400">{description}</p>
       </div>
-    </li>
+    </motion.li>
   );
 }
 
@@ -262,7 +271,7 @@ export default function Membership() {
   });
 
   return (
-    <section id="membership" className="mx-auto max-w-7xl px-6 pb-24 pt-8 md:pb-32 md:pt-12">
+    <section id="membership" className="mx-auto max-w-7xl px-6 py-12 md:py-24">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
         {/* ── Offer ── */}
         <motion.div {...revealUp()}>
@@ -279,7 +288,10 @@ export default function Membership() {
             that keeps you visible and connected between them.
           </p>
 
-          <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-[#8B61F8] via-[#7541F6] to-[#5C2ED4] p-8 shadow-[0_0_40px_rgba(117,65,246,0.35)]">
+          <div
+            id="membership-apply"
+            className="rounded-2xl border border-white/20 bg-gradient-to-br from-[#8B61F8] via-[#7541F6] to-[#5C2ED4] p-8 shadow-[0_0_40px_rgba(117,65,246,0.35)]"
+          >
             <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
               <p className="text-5xl font-bold tracking-tight text-white md:text-6xl">₪400</p>
               <p className="pb-2 text-sm uppercase tracking-wide text-violet-100/80">
@@ -307,9 +319,14 @@ export default function Membership() {
         </motion.div>
       </div>
 
-      <ul className="mt-16 grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
-        {BENEFITS.map((benefit) => (
-          <BenefitCard key={benefit.title} {...benefit} />
+      <ul className="mt-8 grid w-full grid-cols-1 gap-4 md:mt-16 md:grid-cols-2 lg:gap-6">
+        {BENEFITS.map((benefit, index) => (
+          <BenefitCard
+            key={benefit.title}
+            index={index}
+            reduceMotion={shouldReduceMotion}
+            {...benefit}
+          />
         ))}
       </ul>
 

@@ -28,7 +28,7 @@ const WAYS = [
     description:
       'A personal session to identify who you need to know, where to find them and how to turn relationships into business opportunities.',
     linkLabel: 'Book a Session',
-    href: '#strategy',
+    href: '#',
     image: '/new/Strategy.jpg',
     imageAlt: 'Founders in conversation during a strategy session',
   },
@@ -38,7 +38,7 @@ const WAYS = [
     description:
       'Corporate networking, business introductions, event sponsorship and tailored networking solutions for companies.',
     linkLabel: 'Explore Business',
-    href: '#business',
+    href: '#',
     image: '/new/Business.jpg',
     imageAlt: 'Business leaders networking in a CardBook room',
   },
@@ -51,28 +51,28 @@ export default function MoreWaysToConnect() {
     <section
       id="more-ways"
       aria-labelledby={`${baseId}-heading`}
-      className="mx-auto max-w-7xl px-6 py-24 text-left md:py-32"
+      className="mx-auto max-w-7xl px-6 py-12 text-left md:py-24"
     >
       <h2
         id={`${baseId}-heading`}
-        className="mb-6 text-6xl font-bold uppercase leading-none tracking-tighter text-white md:mb-8 md:text-8xl lg:text-[7.5rem]"
+        className="mb-4 text-6xl font-bold uppercase leading-none tracking-tighter text-white md:mb-6 md:text-8xl lg:text-[7.5rem]"
       >
         More
         <br className="md:hidden" /> Ways To
         <br className="md:hidden" /> Connect
       </h2>
 
-      <p className="mb-16 max-w-3xl text-lg font-normal leading-relaxed text-zinc-400 lg:mb-24 md:text-xl">
+      <p className="mb-8 max-w-3xl text-lg font-normal leading-relaxed text-zinc-400 md:mb-16 md:text-xl">
         Your networking journey doesn&rsquo;t end at the event. CardBook gives you different ways
         to build relationships, increase your visibility and turn your network into opportunities.
       </p>
 
-      <ul className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+      <ul className="mx-auto mt-8 grid w-full max-w-7xl grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-6">
         {WAYS.map((way) => (
           <li key={way.label}>
             <a
               href={way.href}
-              {...(way.href.startsWith('http')
+              {...(way.href.startsWith('http') || way.href === '#'
                 ? { target: '_blank', rel: 'noopener noreferrer' }
                 : {})}
               className="group relative flex min-h-[400px] cursor-pointer flex-col justify-end overflow-hidden rounded-3xl border border-white/10 bg-zinc-900 p-6 transition-colors duration-500 hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:p-8 lg:min-h-[480px]"
