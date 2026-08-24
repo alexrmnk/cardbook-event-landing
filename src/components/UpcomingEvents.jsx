@@ -15,14 +15,14 @@ const EVENTS = [
   },
   {
     tag: 'Private · By invitation',
-    title: 'Business Breakfast with Elli Glaybman',
+    title: 'Business morning meeting',
     meta: 'Tel Aviv · Limited seats',
     description:
-      'A small, curated morning with Elli Glaybman, Founder of CardBook — for founders and business leaders who want direct access to the right conversations, not another networking crowd.',
+      'For founders and business leaders who want direct access to the right conversations, not another networking crowd.',
     cta: 'Join the Waitlist',
     href: '#membership',
-    image: '/new/Breakfast.jpg',
-    imageAlt: 'A small curated breakfast conversation between founders',
+    image: '/new/meeting.jpg',
+    imageAlt: 'Founders and business leaders in conversation at a morning meeting',
   },
   {
     tag: 'Flagship event',

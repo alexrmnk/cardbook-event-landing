@@ -7,8 +7,8 @@ import Logo from './Logo';
 const NAV_LINKS = [
   { label: 'Membership', href: '#membership' },
   { label: 'Upcoming Events', href: '#upcoming' },
-  { label: 'Past Events', href: '#past-events' },
-  { label: 'More Ways to Connect', href: '#connect' },
+  { label: 'For Sponsors', to: '/archive/v1/sponsors' },
+  { label: 'More Ways to Connect', href: '#more-ways' },
 ];
 
 export default function NewNavbar() {
@@ -56,15 +56,28 @@ export default function NewNavbar() {
 
         {/* ── Desktop menu ── */}
         <ul className="hidden items-center gap-8 lg:flex xl:gap-10">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="nav-link group px-0.5 py-2">
-                <span className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent-light after:transition-all after:duration-300 group-hover:after:w-full">
-                  {link.label}
-                </span>
-              </a>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const className = 'nav-link group px-0.5 py-2';
+            const label = (
+              <span className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent-light after:transition-all after:duration-300 group-hover:after:w-full">
+                {link.label}
+              </span>
+            );
+
+            return (
+              <li key={link.label}>
+                {link.to ? (
+                  <Link to={link.to} className={className}>
+                    {label}
+                  </Link>
+                ) : (
+                  <a href={link.href} className={className}>
+                    {label}
+                  </a>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         {/* ── Mobile toggle ── */}
@@ -97,14 +110,24 @@ export default function NewNavbar() {
           >
             <ul className="mx-auto max-w-7xl px-6 py-2 md:px-10">
               {NAV_LINKS.map((link) => (
-                <li key={link.href} className="border-b border-white/5 last:border-b-0">
-                  <a
-                    href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="nav-link min-h-11 w-full py-4"
-                  >
-                    {link.label}
-                  </a>
+                <li key={link.label} className="border-b border-white/5 last:border-b-0">
+                  {link.to ? (
+                    <Link
+                      to={link.to}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="nav-link min-h-11 w-full py-4"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="nav-link min-h-11 w-full py-4"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

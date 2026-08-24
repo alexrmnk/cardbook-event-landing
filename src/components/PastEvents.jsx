@@ -2,7 +2,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 import CircularGallery from './CircularGallery';
 
 const STATS = [
-  { value: '5,000+', label: 'entrepreneurs, investors & leaders connected' },
+  { value: '14,000+', label: 'entrepreneurs, investors & leaders connected in Israel' },
+  { value: '150,000+', label: 'professionals in our global CardBook network' },
   { value: '3,000+', label: 'meaningful introductions made' },
   { value: '1,000+', label: 'partnerships started' },
 ];
@@ -32,7 +33,7 @@ export default function PastEvents() {
           Every CardBook event is built to create outcomes — not just conversations.
         </h2>
 
-        <div className="grid grid-cols-1 gap-10 border-t border-white/10 pt-12 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-12 lg:grid-cols-4 lg:gap-10">
           {STATS.map((stat, index) => (
             <motion.div
               key={stat.value}
@@ -45,10 +46,12 @@ export default function PastEvents() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <p className="mb-4 text-5xl font-bold tracking-tight text-white md:text-6xl">
+              <p className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
                 {stat.value}
               </p>
-              <p className="max-w-xs leading-relaxed text-zinc-400">{stat.label}</p>
+              <p className="max-w-xs text-sm leading-relaxed text-zinc-400 lg:text-base">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>

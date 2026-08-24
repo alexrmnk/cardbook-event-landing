@@ -28,9 +28,9 @@ const SPONSORS = [
     href: 'https://acronadlan.com/en/',
   },
   {
-    src: '/media/sponsor-logo/art-moment.png',
-    alt: 'Art Moment',
-    href: 'https://www.instagram.com/anna.mirel/',
+    src: '/media/sponsor-logo/partner4.png',
+    alt: 'Passport News',
+    href: 'https://passport.news/',
   },
   {
     src: '/media/sponsor-logo/TBC.svg',
