@@ -42,7 +42,7 @@ export default function UpcomingEvents() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState('');
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const syncScrollState = useCallback(() => {
     const track = trackRef.current;
@@ -146,7 +146,7 @@ export default function UpcomingEvents() {
             <button
               type="button"
               onClick={() => {
-                setSelectedEvent(event.title);
+                setSelectedEvent(event);
                 setIsModalOpen(true);
               }}
               className="self-start rounded-xl bg-white px-6 py-3 text-sm font-medium text-violet-950 transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
@@ -177,7 +177,7 @@ export default function UpcomingEvents() {
       <WaitlistModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        eventName={selectedEvent}
+        event={selectedEvent}
       />
     </section>
   );

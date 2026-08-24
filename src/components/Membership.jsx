@@ -300,7 +300,9 @@ export default function Membership() {
             </div>
 
             <a
-              href="#membership-apply"
+              href="https://allpay.to/~cardbook/65280a3585"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group mt-8 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-white px-8 py-4 font-sans text-sm uppercase tracking-widest text-violet-950 shadow-xl transition-colors duration-300 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-violet-700 sm:w-auto"
             >
               Become a Member
@@ -331,7 +333,9 @@ export default function Membership() {
       </ul>
 
       <a
-        href="#membership-apply"
+        href="https://allpay.to/~cardbook/65280a3585"
+        target="_blank"
+        rel="noopener noreferrer"
         className="mt-8 block w-full rounded-xl bg-white py-4 text-center text-sm font-bold uppercase tracking-wide text-violet-950 shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-transform active:scale-95 motion-reduce:active:scale-100 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
       >
         Become a Member

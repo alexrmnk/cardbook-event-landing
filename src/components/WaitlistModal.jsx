@@ -16,11 +16,11 @@ const INITIAL_FORM = {
 };
 
 const FIELD_CLASS =
-  'w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors duration-200 focus:border-violet-500';
+  'w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-zinc-600 outline-none transition-colors duration-200 focus:border-violet-500';
 
 const LABEL_CLASS = 'mb-1 block text-xs uppercase tracking-widest text-zinc-400';
 
-export default function WaitlistModal({ isOpen, onClose, eventName }) {
+export default function WaitlistModal({ isOpen, onClose, event }) {
   const [form, setForm] = useState(INITIAL_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -82,7 +82,7 @@ export default function WaitlistModal({ isOpen, onClose, eventName }) {
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          event: eventName,
+          event: event?.title,
           name: form.name,
           email: form.email,
           phone: form.phone,
@@ -102,7 +102,7 @@ export default function WaitlistModal({ isOpen, onClose, eventName }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-0 backdrop-blur-md md:p-6"
+          className="fixed inset-0 z-[100] flex h-[100dvh] items-center justify-center bg-black/80 p-0 backdrop-blur-md md:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -113,14 +113,14 @@ export default function WaitlistModal({ isOpen, onClose, eventName }) {
           aria-labelledby="waitlist-modal-title"
         >
           <motion.div
-            className="relative z-50 flex h-full w-full flex-col overflow-hidden bg-zinc-900 md:h-auto md:max-h-[90vh] md:min-h-[640px] md:max-w-5xl md:flex-row md:rounded-3xl md:border md:border-white/10"
+            className="relative z-50 flex h-[100dvh] w-full flex-col overflow-hidden bg-zinc-900 md:h-auto md:max-h-[90vh] md:min-h-[640px] md:max-w-5xl md:flex-row md:rounded-3xl md:border md:border-white/10"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="relative hidden overflow-hidden p-12 md:flex md:w-1/2 md:flex-col md:justify-center">
+            <div className="relative hidden overflow-hidden p-12 md:flex md:w-1/2 md:flex-col">
               <div id="molten-metal-bg" className="absolute inset-0 bg-zinc-800">
                 {isDesktop ? <MoltenMetal className="h-full w-full" /> : null}
               </div>
@@ -128,22 +128,31 @@ export default function WaitlistModal({ isOpen, onClose, eventName }) {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"
               />
-              <div className="pointer-events-none relative z-10">
-                {eventName ? (
-                  <p className="mb-4 font-mono text-xs uppercase tracking-widest text-accent-light">
-                    {eventName}
+              <div className="pointer-events-none relative z-10 flex h-full flex-col">
+                <div>
+                  <h2 className="text-4xl font-bold tracking-tight text-white">
+                    Join CardBook Networking Club
+                  </h2>
+                  <p className="mt-4 text-zinc-400 leading-relaxed">
+                    Tell us a bit about yourself — takes less than a minute!
                   </p>
+                </div>
+
+                {event ? (
+                  <div className="mt-auto w-full pt-10">
+                    <div className="w-full rounded-2xl border border-white/10 bg-black/20 p-6 backdrop-blur-md">
+                      <p className="font-mono text-xs uppercase tracking-widest text-accent-light">
+                        {event.tag}
+                      </p>
+                      <p className="mt-2 text-2xl font-bold text-white">{event.title}</p>
+                      <p className="mt-1 text-sm text-zinc-400">{event.meta}</p>
+                    </div>
+                  </div>
                 ) : null}
-                <h2 className="text-4xl font-bold tracking-tight text-white">
-                  Join CardBook Networking Club
-                </h2>
-                <p className="mt-4 text-zinc-400 leading-relaxed">
-                  Tell us a bit about yourself — takes less than a minute!
-                </p>
               </div>
             </div>
 
-            <div className="relative h-full w-full overflow-y-auto bg-zinc-900/95 p-6 backdrop-blur-xl md:w-1/2 md:p-12">
+            <div className="relative h-full w-full overflow-y-auto bg-zinc-900/95 p-6 pb-12 backdrop-blur-xl md:w-1/2 md:p-12">
               <button
                 type="button"
                 onClick={onClose}
@@ -182,11 +191,6 @@ export default function WaitlistModal({ isOpen, onClose, eventName }) {
               ) : (
                 <>
                   <header className="mb-8 pr-10 md:hidden">
-                    {eventName ? (
-                      <p className="mb-2 font-mono text-xs uppercase tracking-widest text-accent-light">
-                        {eventName}
-                      </p>
-                    ) : null}
                     <h2 className="text-2xl font-bold tracking-tight text-white">
                       Join CardBook Networking Club
                     </h2>
@@ -200,6 +204,16 @@ export default function WaitlistModal({ isOpen, onClose, eventName }) {
                   </h2>
 
                   <form onSubmit={handleSubmit}>
+                    {event ? (
+                      <div className="mb-6 w-full rounded-xl border border-white/10 bg-white/5 p-4 md:hidden">
+                        <p className="font-mono text-[10px] uppercase tracking-widest text-accent-light">
+                          {event.tag}
+                        </p>
+                        <p className="mt-1.5 text-lg font-bold text-white">{event.title}</p>
+                        <p className="mt-1 text-xs text-zinc-400">{event.meta}</p>
+                      </div>
+                    ) : null}
+
                     <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
                       <div>
                         <label htmlFor="waitlist-name" className={LABEL_CLASS}>
