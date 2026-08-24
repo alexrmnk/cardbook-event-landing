@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import WaitlistModal from './WaitlistModal';
 
 const EVENTS = [
   {
@@ -9,7 +10,6 @@ const EVENTS = [
     description:
       '200+ founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
     cta: 'Join the Waitlist',
-    href: '#membership',
     image: encodeURI('/new/Networking Club.jpg'),
     imageAlt: 'Guests networking at a CardBook Networking Club evening',
   },
@@ -20,7 +20,6 @@ const EVENTS = [
     description:
       'For founders and business leaders who want direct access to the right conversations, not another networking crowd.',
     cta: 'Join the Waitlist',
-    href: '#membership',
     image: '/new/meeting.jpg',
     imageAlt: 'Founders and business leaders in conversation at a morning meeting',
   },
@@ -31,7 +30,6 @@ const EVENTS = [
     description:
       '1,000 people. One network. Infinite opportunities. The largest CardBook event of the year — where the next generation of founders, investors and dealmakers meet.',
     cta: 'Join the Waitlist',
-    href: '#membership',
     image: encodeURI('/new/Big Conference.jpg'),
     imageAlt: 'A full auditorium at the CardBook annual conference',
   },
@@ -43,6 +41,8 @@ export default function UpcomingEvents() {
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState('');
 
   const syncScrollState = useCallback(() => {
     const track = trackRef.current;
@@ -143,12 +143,16 @@ export default function UpcomingEvents() {
             <p className="mb-4 text-sm text-zinc-400">{event.meta}</p>
             <p className="mb-8 grow leading-relaxed text-zinc-400">{event.description}</p>
 
-            <a
-              href={event.href}
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedEvent(event.title);
+                setIsModalOpen(true);
+              }}
               className="self-start rounded-xl bg-white px-6 py-3 text-sm font-medium text-violet-950 transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               {event.cta}
-            </a>
+            </button>
           </li>
         ))}
         </ul>
@@ -169,6 +173,12 @@ export default function UpcomingEvents() {
           <span className="text-white">0{activeIndex}</span> / 0{EVENTS.length}
         </div>
       </div>
+
+      <WaitlistModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        eventName={selectedEvent}
+      />
     </section>
   );
 }
