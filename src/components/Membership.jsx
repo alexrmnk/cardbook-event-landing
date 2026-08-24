@@ -1,46 +1,72 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, BadgeCheck, Eye, Handshake, IdCard, Ticket } from 'lucide-react';
+import {
+  ArrowRight,
+  BadgeCheck,
+  Handshake,
+  IdCard,
+  Key,
+  MonitorPlay,
+  Newspaper,
+  Percent,
+  Ticket,
+} from 'lucide-react';
 
 const BENEFITS = [
   {
     icon: Ticket,
     title: '4 Networking Club Events',
-    detail: 'full access, without buying tickets one by one',
+    description: 'Full access, without buying tickets one by one.',
   },
   {
     icon: IdCard,
     title: 'Digital Membership Card',
-    detail: 'one QR code, and anyone you meet can save your profile instantly.',
+    description: 'One QR code, and anyone you meet can save your profile instantly.',
   },
   {
     icon: BadgeCheck,
     title: 'Verified Member Status',
-    detail: 'your profile marked as a trusted member.',
+    description: 'Your profile marked as a trusted member across the network.',
   },
   {
-    icon: Eye,
+    icon: MonitorPlay,
     title: 'Featured on Event Screens',
-    detail: 'get seen by the room, not just by people you talk to.',
+    description: 'Get seen by the room, not just by people you personally talk to.',
   },
   {
     icon: Handshake,
-    title: 'Priority Access to Introductions',
-    detail: 'first in line for relevant warm intros.',
+    title: 'Priority Access to Intros',
+    description: 'First in line for relevant warm introductions.',
+  },
+  {
+    icon: Percent,
+    title: '20% Off Paid Meetings',
+    description: 'Exclusive member discount on private networking and strategic sessions.',
+  },
+  {
+    icon: Newspaper,
+    title: '20% Off CardBook Magazine',
+    description: 'Discount on publications, interviews, and media features.',
+  },
+  {
+    icon: Key,
+    title: '2 Intro Tokens',
+    description: 'Use them for guaranteed, highly targeted personal introductions.',
   },
 ];
 
-function BenefitItem({ icon: Icon, title, detail }) {
+function BenefitCard({ icon: Icon, title, description }) {
   return (
-    <li className="flex items-center gap-4">
+    <li className="flex gap-3 rounded-2xl border border-white/5 bg-white/5 p-4 transition-colors duration-300 hover:bg-white/10 md:gap-4 md:p-6">
       <span
         aria-hidden="true"
-        className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent/10"
+        className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-accent/20 text-accent-light md:size-12"
       >
-        <Icon className="size-4 text-accent-light" strokeWidth={1.5} />
+        <Icon className="size-5 md:size-6" strokeWidth={1.5} />
       </span>
-      <p className="leading-relaxed text-zinc-400">
-        <span className="font-medium text-white">{title}</span> — {detail}
-      </p>
+      <div className="flex min-w-0 flex-col gap-1">
+        <p className="text-base font-semibold text-white md:text-lg">{title}</p>
+        <p className="text-sm leading-relaxed text-zinc-400">{description}</p>
+      </div>
     </li>
   );
 }
@@ -281,18 +307,18 @@ export default function Membership() {
         </motion.div>
       </div>
 
-      <div className="mt-8 grid w-full grid-cols-1 gap-x-12 gap-y-6 lg:mt-10 lg:grid-cols-2">
-        <ul className="space-y-6">
-          {BENEFITS.slice(0, 3).map((benefit) => (
-            <BenefitItem key={benefit.title} {...benefit} />
-          ))}
-        </ul>
-        <ul className="space-y-6">
-          {BENEFITS.slice(3, 5).map((benefit) => (
-            <BenefitItem key={benefit.title} {...benefit} />
-          ))}
-        </ul>
-      </div>
+      <ul className="mt-16 grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+        {BENEFITS.map((benefit) => (
+          <BenefitCard key={benefit.title} {...benefit} />
+        ))}
+      </ul>
+
+      <a
+        href="#membership-apply"
+        className="mt-8 block w-full rounded-xl bg-white py-4 text-center text-sm font-bold uppercase tracking-wide text-violet-950 shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-transform active:scale-95 motion-reduce:active:scale-100 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+      >
+        Become a Member
+      </a>
     </section>
   );
 }
