@@ -331,6 +331,7 @@ class App {
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0, position: 0 };
     this.isDown = false;
     this.start = 0;
+    this.lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
     // Rendering is gated on visibility so the RAF loop stays idle while the
     // section is off-screen.
     this.isVisible = true;
@@ -430,6 +431,14 @@ class App {
     this.onCheckDebounce();
   }
 
+  onPageScroll() {
+    const deltaY = window.scrollY - this.lastScrollY;
+    this.lastScrollY = window.scrollY;
+    if (!this.isVisible || deltaY === 0) return;
+    this.scroll.target += deltaY * this.scrollSpeed * 0.025;
+    this.onCheckDebounce();
+  }
+
   onCheck() {
     if (!this.medias || !this.medias[0]) return;
     const { width } = this.medias[0];
@@ -490,6 +499,7 @@ class App {
     window.addEventListener('mouseup', this.onTouchUp);
     window.addEventListener('touchmove', this.onTouchMove, { passive: true });
     window.addEventListener('touchend', this.onTouchUp);
+    window.addEventListener('scroll', this.onPageScroll, { passive: true });
 
     if (typeof IntersectionObserver !== 'undefined') {
       this.observer = new IntersectionObserver(
@@ -513,6 +523,7 @@ class App {
     window.removeEventListener('mouseup', this.onTouchUp);
     window.removeEventListener('touchmove', this.onTouchMove);
     window.removeEventListener('touchend', this.onTouchUp);
+    window.removeEventListener('scroll', this.onPageScroll);
 
     this.observer?.disconnect();
 
@@ -568,6 +579,7 @@ export default function CircularGallery({
       <div
         ref={containerRef}
         aria-hidden="true"
+        style={{ touchAction: 'pan-y' }}
         className="h-full w-full cursor-grab overflow-hidden font-sans text-[26px] font-bold text-ink-100 active:cursor-grabbing md:text-[30px]"
       />
 
