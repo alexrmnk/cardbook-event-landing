@@ -73,7 +73,7 @@ function BenefitCard({ icon: Icon, title, description, index, reduceMotion }) {
         <Icon className="size-5 md:size-6" strokeWidth={1.5} />
       </span>
       <div className="flex min-w-0 flex-col gap-1">
-        <p className="text-base font-semibold text-white md:text-lg">{title}</p>
+        <p className="text-[19px] font-semibold text-white md:text-[21px]">{title}</p>
         <p className="text-sm leading-relaxed text-zinc-400">{description}</p>
       </div>
     </motion.li>
