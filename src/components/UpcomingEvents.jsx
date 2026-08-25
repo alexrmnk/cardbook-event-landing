@@ -149,7 +149,7 @@ export default function UpcomingEvents() {
                 setSelectedEvent(event);
                 setIsModalOpen(true);
               }}
-              className="self-start rounded-xl bg-white px-6 py-3 text-sm font-medium text-violet-950 transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-3.5 text-center text-sm font-medium text-violet-950 transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:w-auto md:self-start md:py-3"
             >
               {event.cta}
             </button>

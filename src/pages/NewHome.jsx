@@ -39,10 +39,10 @@ export default function NewHome() {
             <source src={HERO_VIDEO_SRC} type="video/mp4" />
           </video>
 
-          {/* Legibility overlays */}
+          {/* Legibility overlays — light enough to show the video, dense enough for type */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/75 via-black/60 to-ink-950/95"
+            className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/30 to-ink-950/90"
           />
           <div
             aria-hidden="true"
@@ -56,14 +56,14 @@ export default function NewHome() {
           <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 pb-20 pt-32 text-center md:pb-24 md:pt-36">
             <motion.p
               {...fadeUp(0)}
-              className="font-sans text-xs uppercase tracking-widest2 text-accent-light"
+              className="font-sans text-xs uppercase tracking-widest2 text-accent-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
             >
               CardBook Networking Club Events
             </motion.p>
 
             <motion.h1
               {...fadeUp(0.1)}
-              className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl"
+              className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl [text-shadow:0_2px_28px_rgba(0,0,0,0.55)]"
             >
               <span className="block">Every connection starts somewhere.</span>
               <span className="block">This is where yours begins.</span>
@@ -71,7 +71,7 @@ export default function NewHome() {
 
             <motion.p
               {...fadeUp(0.2)}
-              className="mt-8 max-w-2xl text-base leading-relaxed text-zinc-300 md:text-lg"
+              className="mt-8 max-w-2xl text-base leading-relaxed text-zinc-200 md:text-lg [text-shadow:0_1px_18px_rgba(0,0,0,0.55)]"
             >
               A premium networking experience for founders, investors and business leaders,
               where one conversation can become your next opportunity.
@@ -95,7 +95,7 @@ export default function NewHome() {
 
               <a
                 href="#upcoming"
-                className="group inline-flex min-h-11 items-center gap-2 rounded-sm px-1 text-sm text-zinc-300 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+                className="group inline-flex min-h-11 items-center gap-2 rounded-sm px-1 text-sm text-zinc-200 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
               >
                 <span className="underline-offset-4 group-hover:underline">
                   See upcoming events
