@@ -4,7 +4,7 @@ import { CheckCircle, Loader2, X } from 'lucide-react';
 import MoltenMetal from './MoltenMetal';
 
 const WEBHOOK_URL =
-  'https://script.google.com/macros/s/AKfycbzPPs36QSx5kofnB46WBQVIwq2qrXb9dYg6StJFU4rrfB1SasKnwDRKrOGgp0FhfDznJA/exec';
+  'https://script.google.com/macros/s/AKfycbz_fm3VPy0yxgblmlE9hVKAcTXPIQo2D8sHnTv8RAlpXMv8DwipnXyBG4zibEdkbb5gkQ/exec';
 
 const INITIAL_FORM = {
   name: '',
@@ -20,12 +20,29 @@ const FIELD_CLASS =
 
 const LABEL_CLASS = 'mb-1 block text-xs uppercase tracking-widest text-zinc-400';
 
-export default function WaitlistModal({ isOpen, onClose, event }) {
+const MODAL_COPY = {
+  waitlist: {
+    title: 'Join CardBook Networking Club',
+    subtitle: 'Tell us a bit about yourself — takes less than a minute!',
+    success:
+      'Thank you for your interest. We have safely received your details and will be in touch shortly, or closer to the event date, with your invitation.',
+  },
+  membership: {
+    title: 'Apply for Membership',
+    subtitle:
+      'Submit your details for review. We will manually send you a payment link if approved.',
+    success:
+      'Thank you for your application. Our team will review your details and get back to you shortly with the next steps.',
+  },
+};
+
+export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist' }) {
   const [form, setForm] = useState(INITIAL_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [nameError, setNameError] = useState('');
   const [isDesktop, setIsDesktop] = useState(false);
+  const copy = MODAL_COPY[mode] ?? MODAL_COPY.waitlist;
 
   useEffect(() => {
     const media = window.matchMedia('(min-width: 768px)');
@@ -82,7 +99,8 @@ export default function WaitlistModal({ isOpen, onClose, event }) {
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          event: event?.title,
+          formType: mode,
+          event: event?.title || 'Membership Request',
           name: form.name,
           email: form.email,
           phone: form.phone,
@@ -131,10 +149,10 @@ export default function WaitlistModal({ isOpen, onClose, event }) {
               <div className="pointer-events-none relative z-10 flex h-full flex-col">
                 <div>
                   <h2 className="text-4xl font-bold tracking-tight text-white">
-                    Join CardBook Networking Club
+                    {copy.title}
                   </h2>
                   <p className="mt-4 text-zinc-400 leading-relaxed">
-                    Tell us a bit about yourself — takes less than a minute!
+                    {copy.subtitle}
                   </p>
                 </div>
 
@@ -176,9 +194,7 @@ export default function WaitlistModal({ isOpen, onClose, event }) {
                     Request Received.
                   </h2>
                   <p className="mx-auto mb-8 max-w-sm text-center leading-relaxed text-zinc-400">
-                    Thank you for your interest. We have safely received your details and
-                    will be in touch shortly, or closer to the event date, with your
-                    invitation.
+                    {copy.success}
                   </p>
                   <button
                     type="button"
@@ -192,15 +208,15 @@ export default function WaitlistModal({ isOpen, onClose, event }) {
                 <>
                   <header className="mb-8 pr-10 md:hidden">
                     <h2 className="text-2xl font-bold tracking-tight text-white">
-                      Join CardBook Networking Club
+                      {copy.title}
                     </h2>
                     <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-                      Tell us a bit about yourself — takes less than a minute!
+                      {copy.subtitle}
                     </p>
                   </header>
 
                   <h2 id="waitlist-modal-title" className="sr-only">
-                    Join CardBook Networking Club
+                    {copy.title}
                   </h2>
 
                   <form onSubmit={handleSubmit}>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
@@ -10,6 +11,7 @@ import {
   Percent,
   Ticket,
 } from 'lucide-react';
+import WaitlistModal from './WaitlistModal';
 
 const BENEFITS = [
   {
@@ -262,6 +264,7 @@ function DigitalTicket() {
 
 export default function Membership() {
   const shouldReduceMotion = useReducedMotion();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const revealUp = (delay = 0) => ({
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 24 },
@@ -271,6 +274,7 @@ export default function Membership() {
   });
 
   return (
+    <>
     <section id="membership" className="mx-auto max-w-7xl px-6 py-12 md:py-24">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
         {/* ── Offer ── */}
@@ -299,10 +303,9 @@ export default function Membership() {
               </p>
             </div>
 
-            <a
-              href="https://allpay.to/~cardbook/65280a3585"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
               className="group mt-8 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-white px-8 py-4 font-sans text-sm uppercase tracking-widest text-violet-950 shadow-xl transition-colors duration-300 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-violet-700 sm:w-auto"
             >
               Become a Member
@@ -311,7 +314,7 @@ export default function Membership() {
                 strokeWidth={1.5}
                 className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
               />
-            </a>
+            </button>
           </div>
         </motion.div>
 
@@ -332,14 +335,20 @@ export default function Membership() {
         ))}
       </ul>
 
-      <a
-        href="https://allpay.to/~cardbook/65280a3585"
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        type="button"
+        onClick={() => setIsModalOpen(true)}
         className="mt-8 block w-full rounded-xl bg-white py-4 text-center text-sm font-bold uppercase tracking-wide text-violet-950 shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-transform active:scale-95 motion-reduce:active:scale-100 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
       >
         Become a Member
-      </a>
+      </button>
     </section>
+
+    <WaitlistModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      mode="membership"
+    />
+    </>
   );
 }
