@@ -6,7 +6,7 @@ const EVENTS = [
   {
     tag: 'Upcoming · Open registration soon',
     title: 'Networking Club',
-    meta: 'September 2026 · Tel Aviv',
+    meta: 'October 2026 · Tel Aviv',
     description:
       '200+ founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
     cta: 'Join the Waitlist',
