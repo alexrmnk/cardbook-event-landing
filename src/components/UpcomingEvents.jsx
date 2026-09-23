@@ -6,11 +6,11 @@ const EVENTS = [
   {
     tag: 'Upcoming · Open registration soon',
     title: 'Networking Club',
-    meta: 'This autumn · Tel Aviv',
+    meta: '04 November',
     description:
-      '200+ founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
+      'Founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
     cta: 'Join the Waitlist',
-    image: `${encodeURI('/new/Networking Club.jpg')}?v=autumn-2026`,
+    image: encodeURI('/new/Networking Club-new.jpg'),
     imageAlt: 'Guests networking at a CardBook Networking Club evening',
   },
   {
