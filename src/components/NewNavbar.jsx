@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
+import { EventPulse } from './EventPromoPill';
+import { CURRENT_EVENT } from '../config/currentEvent';
 
 const NAV_LINKS = [
   { label: 'Membership', href: '#membership' },
   { label: 'Upcoming Events', href: '#upcoming' },
-  { label: 'For Sponsors', to: '/archive/v1/sponsors' },
+  { label: 'For Sponsors', to: CURRENT_EVENT.sponsorsPath },
   { label: 'More Ways to Connect', href: '#more-ways' },
+  ...(CURRENT_EVENT.isActive
+    ? [{ label: CURRENT_EVENT.navLabel, to: CURRENT_EVENT.path, highlight: true }]
+    : []),
 ];
 
 export default function NewNavbar() {
@@ -33,6 +38,8 @@ export default function NewNavbar() {
   }, [isMenuOpen]);
 
   const isSolid = isScrolled || isMenuOpen;
+  const highlightClass =
+    'group inline-flex min-h-11 items-center gap-2 rounded-full border border-accent/50 bg-accent/15 px-4 py-2 font-sans text-sm font-semibold uppercase tracking-wide text-white transition-colors duration-300 hover:border-accent/80 hover:bg-accent/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light';
 
   return (
     <header
@@ -59,14 +66,19 @@ export default function NewNavbar() {
           {NAV_LINKS.map((link) => {
             const className = 'nav-link group px-0.5 py-2';
             const label = (
-              <span className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent-light after:transition-all after:duration-300 group-hover:after:w-full">
+              <span className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent-light after:transition-[width] after:duration-300 group-hover:after:w-full">
                 {link.label}
               </span>
             );
 
             return (
               <li key={link.label}>
-                {link.to ? (
+                {link.highlight ? (
+                  <Link to={link.to} className={highlightClass}>
+                    <EventPulse />
+                    {link.label}
+                  </Link>
+                ) : link.to ? (
                   <Link to={link.to} className={className}>
                     {label}
                   </Link>
@@ -80,8 +92,15 @@ export default function NewNavbar() {
           })}
         </ul>
 
-        {/* ── Mobile toggle ── */}
-        <button
+        <div className="flex items-center gap-2 lg:hidden">
+          {CURRENT_EVENT.isActive && (
+            <Link to={CURRENT_EVENT.path} className={highlightClass}>
+              <EventPulse />
+              {CURRENT_EVENT.navShortLabel}
+            </Link>
+          )}
+          {/* ── Mobile toggle ── */}
+          <button
           type="button"
           onClick={() => setIsMenuOpen((open) => !open)}
           aria-expanded={isMenuOpen}
@@ -94,7 +113,8 @@ export default function NewNavbar() {
           ) : (
             <Menu className="size-5" strokeWidth={1.5} />
           )}
-        </button>
+          </button>
+        </div>
       </nav>
 
       {/* ── Mobile menu panel ── */}
@@ -111,7 +131,16 @@ export default function NewNavbar() {
             <ul className="mx-auto max-w-7xl px-6 py-2 md:px-10">
               {NAV_LINKS.map((link) => (
                 <li key={link.label} className="border-b border-white/5 last:border-b-0">
-                  {link.to ? (
+                  {link.highlight ? (
+                    <Link
+                      to={link.to}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`${highlightClass} my-3 w-fit`}
+                    >
+                      <EventPulse />
+                      {link.label}
+                    </Link>
+                  ) : link.to ? (
                     <Link
                       to={link.to}
                       onClick={() => setIsMenuOpen(false)}

@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import WaitlistModal from './WaitlistModal';
+import { CURRENT_EVENT } from '../config/currentEvent';
 
 const EVENTS = [
   {
+    id: 'networking-club',
     tag: 'Upcoming · Open registration soon',
     title: 'Networking Club',
     meta: '04 November',
@@ -14,6 +17,7 @@ const EVENTS = [
     imageAlt: 'Guests networking at a CardBook Networking Club evening',
   },
   {
+    id: 'business-morning',
     tag: 'Private · By invitation',
     title: 'Business morning meeting',
     meta: 'Tel Aviv · Limited seats',
@@ -24,6 +28,7 @@ const EVENTS = [
     imageAlt: 'Founders and business leaders in conversation at a morning meeting',
   },
   {
+    id: 'big-conference',
     tag: 'Flagship event',
     title: 'CardBook Big Conference',
     meta: 'December 2026 · Tel Aviv',
@@ -116,17 +121,29 @@ export default function UpcomingEvents() {
             EVENTS.length <= 3 ? 'lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible' : ''
           } hide-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8`}
         >
-          {EVENTS.map((event) => (
+          {EVENTS.map((event) => {
+            const isFeatured =
+              CURRENT_EVENT.isActive &&
+              CURRENT_EVENT.ctaMode === 'register' &&
+              event.id === CURRENT_EVENT.eventId;
+
+            return (
             <li
               key={event.title}
               className={`${
                 EVENTS.length <= 3 ? 'lg:w-full' : 'lg:w-[480px]'
               } group flex w-[85vw] shrink-0 flex-none snap-start flex-col md:w-[420px]`}
             >
-            <div className="relative mb-6 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-zinc-900">
+            <div
+              className={`relative mb-6 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-zinc-900 ${
+                isFeatured ? 'ring-1 ring-accent/40' : ''
+              }`}
+            >
               <img
                 src={event.image}
                 alt={event.imageAlt}
+                width={800}
+                height={600}
                 loading="lazy"
                 className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               />
@@ -135,7 +152,7 @@ export default function UpcomingEvents() {
                 className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/20"
               />
               <span className="absolute left-4 top-4 rounded-full bg-black/80 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-white backdrop-blur-md">
-                {event.tag}
+                {isFeatured ? CURRENT_EVENT.cardTag : event.tag}
               </span>
             </div>
 
@@ -143,18 +160,28 @@ export default function UpcomingEvents() {
             <p className="mb-4 text-sm text-zinc-400">{event.meta}</p>
             <p className="mb-8 grow leading-relaxed text-zinc-400">{event.description}</p>
 
-            <button
-              type="button"
-              onClick={() => {
-                setSelectedEvent(event);
-                setIsModalOpen(true);
-              }}
-              className="inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-3.5 text-center text-sm font-medium text-violet-950 transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:w-auto md:self-start md:py-3"
-            >
-              {event.cta}
-            </button>
+            {isFeatured ? (
+              <Link
+                to={CURRENT_EVENT.path}
+                className="inline-flex w-full items-center justify-center rounded-xl bg-accent px-6 py-3.5 text-center text-sm font-medium text-white transition-colors duration-300 hover:bg-[#7541F6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:w-auto md:self-start md:py-3"
+              >
+                {CURRENT_EVENT.cardCta}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedEvent(event);
+                  setIsModalOpen(true);
+                }}
+                className="inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-3.5 text-center text-sm font-medium text-violet-950 transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:w-auto md:self-start md:py-3"
+              >
+                {event.cta}
+              </button>
+            )}
           </li>
-        ))}
+            );
+          })}
         </ul>
       </div>
 

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import NewNavbar from '../components/NewNavbar';
@@ -8,11 +9,20 @@ import MoreWaysToConnect from '../components/MoreWaysToConnect';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
 import SponsorLogos from '../archive/v1-networking-club/components/SponsorLogos';
+import EventPromoPill from '../components/EventPromoPill';
+import { CURRENT_EVENT } from '../config/currentEvent';
 
 const HERO_VIDEO_SRC = 'https://assets.cardbookecosystem.com/video_back.mp4';
 
 export default function NewHome() {
   const shouldReduceMotion = useReducedMotion();
+  const heroVideoRef = useRef(null);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video || !shouldReduceMotion) return;
+    video.pause();
+  }, [shouldReduceMotion]);
 
   const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 24 },
@@ -22,19 +32,26 @@ export default function NewHome() {
 
   return (
     <div className="min-h-screen bg-ink-950 text-white">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-violet-950 focus:outline-none focus:ring-2 focus:ring-accent-light"
+      >
+        Skip to content
+      </a>
       <NewNavbar />
 
-      <main>
+      <main id="main">
         {/* ── Hero ── */}
         <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-ink-950">
           <video
-            autoPlay
+            ref={heroVideoRef}
+            autoPlay={!shouldReduceMotion}
             muted
-            loop
+            loop={!shouldReduceMotion}
             playsInline
             preload="metadata"
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover motion-reduce:hidden"
           >
             <source src={HERO_VIDEO_SRC} type="video/mp4" />
           </video>
@@ -54,12 +71,18 @@ export default function NewHome() {
           />
 
           <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 pb-20 pt-32 text-center md:pb-24 md:pt-36">
-            <motion.p
-              {...fadeUp(0)}
-              className="font-sans text-xs uppercase tracking-widest2 text-accent-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
-            >
-              CardBook Networking Club Events
-            </motion.p>
+            {CURRENT_EVENT.isActive ? (
+              <motion.div {...fadeUp(0)}>
+                <EventPromoPill reduceMotion={shouldReduceMotion} />
+              </motion.div>
+            ) : (
+              <motion.p
+                {...fadeUp(0)}
+                className="font-sans text-xs uppercase tracking-widest2 text-accent-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
+              >
+                CardBook Networking Club Events
+              </motion.p>
+            )}
 
             <motion.h1
               {...fadeUp(0.1)}
@@ -95,11 +118,9 @@ export default function NewHome() {
 
               <a
                 href="#upcoming"
-                className="group inline-flex min-h-11 items-center gap-2 rounded-sm px-1 text-sm text-zinc-200 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]"
+                className="btn-secondary group w-full justify-center sm:w-auto"
               >
-                <span className="underline-offset-4 group-hover:underline">
-                  See upcoming events
-                </span>
+                See upcoming events
                 <ArrowDown
                   size={14}
                   strokeWidth={1.5}

@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Lock } from 'lucide-react';
 import textData from '../../../locales/en.json';
 
@@ -7,7 +7,15 @@ const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 
 export default function FinalCTA() {
   const ref = useRef(null);
+  const videoRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
   const isInView = useInView(ref, { once: true, margin: '-80px 0px' });
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldReduceMotion) return;
+    video.pause();
+  }, [shouldReduceMotion]);
 
   return (
     <section
@@ -17,12 +25,13 @@ export default function FinalCTA() {
       {/* ── Background video ── */}
       <div className="absolute inset-0 z-0">
         <video
-          autoPlay
+          ref={videoRef}
+          autoPlay={!shouldReduceMotion}
           muted
-          loop
+          loop={!shouldReduceMotion}
           playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          preload="metadata"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
           aria-hidden="true"
         >
           <source

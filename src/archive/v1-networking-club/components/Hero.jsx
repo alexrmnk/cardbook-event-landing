@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin, Lock } from 'lucide-react';
 import textData from '../../../locales/en.json';
 import Header from './Header';
@@ -15,7 +15,15 @@ const fadeUp = (delay = 0) => ({
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const videoRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldReduceMotion) return;
+    video.pause();
+  }, [shouldReduceMotion]);
 
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
@@ -31,12 +39,13 @@ export default function Hero() {
         className="absolute inset-0 z-0 scale-110 origin-center"
       >
         <video
-          autoPlay
+          ref={videoRef}
+          autoPlay={!shouldReduceMotion}
           muted
-          loop
+          loop={!shouldReduceMotion}
           playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          preload="metadata"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover motion-reduce:hidden"
           aria-hidden="true"
         >
           <source src="https://assets.cardbookecosystem.com/video_back.mp4" type="video/mp4" />

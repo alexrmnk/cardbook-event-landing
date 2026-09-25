@@ -68,19 +68,19 @@ export default function MoreWaysToConnect() {
       </p>
 
       <ul className="mx-auto mt-8 grid w-full max-w-7xl grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-6">
-        {WAYS.map((way) => (
-          <li key={way.label}>
-            <a
-              href={way.href}
-              {...(way.href.startsWith('http') || way.href === '#'
-                ? { target: '_blank', rel: 'noopener noreferrer' }
-                : {})}
-              className="group relative flex min-h-[400px] cursor-pointer flex-col justify-end overflow-hidden rounded-3xl border border-white/10 bg-zinc-900 p-6 transition-colors duration-500 hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:p-8 lg:min-h-[480px]"
-            >
+        {WAYS.map((way) => {
+          const isExternal = way.href.startsWith('http');
+          const cardClass =
+            'group relative flex min-h-[400px] flex-col justify-end overflow-hidden rounded-3xl border border-white/10 bg-zinc-900 p-6 transition-colors duration-500 hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:p-8 lg:min-h-[480px]';
+
+          const card = (
+            <>
               <div className="absolute inset-0 overflow-hidden bg-zinc-800">
                 <img
                   src={way.image}
                   alt=""
+                  width={1200}
+                  height={800}
                   aria-hidden="true"
                   className="size-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                 />
@@ -103,9 +103,26 @@ export default function MoreWaysToConnect() {
                   <ArrowRight className="size-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
                 </span>
               </div>
-            </a>
-          </li>
-        ))}
+            </>
+          );
+
+          return (
+            <li key={way.label}>
+              {isExternal ? (
+                <a
+                  href={way.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${cardClass} cursor-pointer`}
+                >
+                  {card}
+                </a>
+              ) : (
+                <div className={cardClass}>{card}</div>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

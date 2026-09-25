@@ -5,6 +5,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Fixed header is h-20. Below md, section padding is shorter than the header, so anchor jumps hide the title. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 0;
+    }
   }
 
   body {
@@ -51,6 +59,15 @@
            hover:bg-white hover:text-black
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light
            focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950
+           transition-colors duration-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-lg
+           border border-white/25 bg-white/5 backdrop-blur-md
+           text-white font-sans text-sm tracking-widest uppercase
+           hover:border-white/60 hover:bg-white/10
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light
            transition-colors duration-300;
   }
 

@@ -1,4 +1,6 @@
 import Hero from './components/Hero';
+import { useDocumentMeta } from '../../hooks/useDocumentMeta';
+import { CURRENT_EVENT } from '../../config/currentEvent';
 import SponsorLogos from './components/SponsorLogos';
 import ValueProps from './components/ValueProps';
 import Roadmap from './components/Roadmap';
@@ -12,6 +14,11 @@ import FinalCTA from './components/FinalCTA';
 import Footer from '../../components/Footer';
 
 export default function Home() {
+  useDocumentMeta({
+    title: CURRENT_EVENT.pageTitle,
+    description: CURRENT_EVENT.pageDescription,
+  });
+
   return (
     <div className="noise-overlay bg-ink-950 text-ink-100 min-h-screen overflow-x-hidden">
       <Hero />
