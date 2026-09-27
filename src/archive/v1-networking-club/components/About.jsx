@@ -39,8 +39,11 @@ const AVATAR_PROFILES = [
     alt: 'Igal Margulis',
     name: 'Igal Margulis',
     title: 'Partner',
+    hidden: true,
   },
 ];
+
+const VISIBLE_AVATAR_PROFILES = AVATAR_PROFILES.filter((profile) => !profile.hidden);
 
 function useReveal(options = {}) {
   const ref = useRef(null);
@@ -187,8 +190,14 @@ export default function About() {
             </div>
 
             <div className="min-w-0">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 w-full">
-                {AVATAR_PROFILES.map((profile) => (
+              <div
+                className={`grid grid-cols-1 gap-6 md:gap-4 w-full ${
+                  VISIBLE_AVATAR_PROFILES.length === 3
+                    ? 'sm:grid-cols-3'
+                    : 'sm:grid-cols-2 md:grid-cols-4'
+                }`}
+              >
+                {VISIBLE_AVATAR_PROFILES.map((profile) => (
                   <div
                     key={profile.href}
                     className="flex flex-row items-center md:flex-col md:items-center text-left md:text-center gap-4 md:gap-3 w-full min-w-0"
