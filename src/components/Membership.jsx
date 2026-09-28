@@ -13,6 +13,13 @@ import {
 } from 'lucide-react';
 import WaitlistModal from './WaitlistModal';
 
+const SINGLE_ENTRY_INCLUDES = [
+  'Entry',
+  'Two complimentary drinks',
+  'Networking',
+  'Catering',
+];
+
 const BENEFITS = [
   {
     icon: Ticket,
@@ -265,6 +272,12 @@ function DigitalTicket() {
 export default function Membership() {
   const shouldReduceMotion = useReducedMotion();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [offerMode, setOfferMode] = useState('membership');
+
+  const openOffer = (mode) => {
+    setOfferMode(mode);
+    setIsModalOpen(true);
+  };
 
   const revealUp = (delay = 0) => ({
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 24 },
@@ -305,10 +318,41 @@ export default function Membership() {
 
             <button
               type="button"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => openOffer('membership')}
               className="group mt-8 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-white px-8 py-4 font-sans text-sm uppercase tracking-widest text-violet-950 shadow-xl transition-colors duration-300 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-violet-700 sm:w-auto"
             >
               Become a Member
+              <ArrowRight
+                size={14}
+                strokeWidth={1.5}
+                className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </button>
+          </div>
+
+          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+            <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
+              <p className="text-4xl font-bold tracking-tight text-white md:text-5xl">₪250</p>
+              <p className="pb-1 text-sm uppercase tracking-wide text-zinc-400">
+                One event · No membership
+              </p>
+            </div>
+
+            <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {SINGLE_ENTRY_INCLUDES.map((item) => (
+                <li key={item} className="flex items-center gap-2 text-sm text-zinc-300">
+                  <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-accent-light" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <button
+              type="button"
+              onClick={() => openOffer('single-entry')}
+              className="group mt-8 inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-lg border border-accent px-8 py-4 font-sans text-sm uppercase tracking-widest text-accent transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 sm:w-auto"
+            >
+              Request one-time entry
               <ArrowRight
                 size={14}
                 strokeWidth={1.5}
@@ -337,7 +381,7 @@ export default function Membership() {
 
       <button
         type="button"
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => openOffer('membership')}
         className="mt-8 block w-full rounded-xl bg-white py-4 text-center text-sm font-bold uppercase tracking-wide text-violet-950 shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-transform active:scale-95 motion-reduce:active:scale-100 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
       >
         Become a Member
@@ -347,7 +391,7 @@ export default function Membership() {
     <WaitlistModal
       isOpen={isModalOpen}
       onClose={() => setIsModalOpen(false)}
-      mode="membership"
+      mode={offerMode}
     />
     </>
   );

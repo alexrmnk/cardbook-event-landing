@@ -34,6 +34,18 @@ const MODAL_COPY = {
     success:
       'Thank you for your application. Our team will review your details and get back to you shortly with the next steps.',
   },
+  'single-entry': {
+    title: 'Request a one-time entry',
+    subtitle:
+      'One Networking Club event for ₪250. Submit your details for review — we will send a payment link if approved.',
+    success:
+      'Thank you for your request. Our team will review your details and send a payment link for your one-time entry.',
+  },
+};
+
+const EVENT_LABEL = {
+  membership: 'Membership Request',
+  'single-entry': 'One-time Event Entry',
 };
 
 export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist' }) {
@@ -100,7 +112,7 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           formType: mode,
-          event: event?.title || 'Membership Request',
+          event: event?.title || EVENT_LABEL[mode] || 'Membership Request',
           name: form.name,
           email: form.email,
           phone: form.phone,
