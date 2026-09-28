@@ -88,8 +88,8 @@ export default function NewHome() {
               {...fadeUp(0.1)}
               className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl [text-shadow:0_2px_28px_rgba(0,0,0,0.55)]"
             >
-              <span className="block">Every connection starts somewhere.</span>
-              <span className="block">This is where yours begins.</span>
+              <span className="block">Welcome to Networking Club.</span>
+              <span className="block">Your connection starts here.</span>
             </motion.h1>
 
             <motion.p
@@ -134,7 +134,7 @@ export default function NewHome() {
         {/* ── Partner ticker ── */}
         <SponsorLogos />
 
-        {/* ── Past events ── */}
+        {/* ── Ecosystem ── */}
         <PastEvents />
 
         {/* ── Membership ── */}

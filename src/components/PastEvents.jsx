@@ -23,14 +23,14 @@ export default function PastEvents() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="past-events" className="py-24 md:py-32">
+    <section id="ecosystem" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <p className="font-mono text-xs uppercase tracking-widest2 text-accent-light">
-          Past Events
+          Our Ecosystem
         </p>
 
         <h2 className="mb-16 mt-6 max-w-3xl font-sans text-3xl font-bold leading-[1.15] tracking-tight text-white text-balance md:text-5xl">
-          Every CardBook event is built to create outcomes — not just conversations.
+          Every CardBook event is built around results — not just conversations.
         </h2>
 
         <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-12 lg:grid-cols-4 lg:gap-10">

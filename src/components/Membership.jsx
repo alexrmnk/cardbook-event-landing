@@ -16,7 +16,7 @@ import WaitlistModal from './WaitlistModal';
 const BENEFITS = [
   {
     icon: Ticket,
-    title: '4 Networking Club Events',
+    title: '3 Networking Club Events',
     description: 'Full access, without buying tickets one by one.',
   },
   {
@@ -240,11 +240,11 @@ function DigitalTicket() {
                   Valid for
                 </p>
                 <p className="mt-1 text-sm font-bold uppercase tracking-wide text-white">
-                  4 Events
+                  3 Events
                 </p>
               </div>
               <p className="text-4xl font-black leading-none text-accent-light [text-shadow:0_0_15px_rgba(127,83,229,0.5)]">
-                04
+                03
               </p>
             </div>
 
@@ -288,7 +288,7 @@ export default function Membership() {
           </h2>
 
           <p className="mb-10 max-w-xl text-lg leading-relaxed text-zinc-400">
-            Your all-access pass to CardBook&rsquo;s four flagship events — plus everything
+            Your all-access pass to CardBook&rsquo;s three flagship events — plus everything
             that keeps you visible and connected between them.
           </p>
 
