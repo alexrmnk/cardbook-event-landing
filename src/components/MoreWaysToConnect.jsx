@@ -1,5 +1,7 @@
 import { useId } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { CURRENT_EVENT } from '../config/currentEvent';
 
 const WAYS = [
   {
@@ -8,7 +10,7 @@ const WAYS = [
     description:
       'Get a personal introduction to someone relevant to your goals — or discover new connections through regular 1:1 networking.',
     linkLabel: 'Explore MatchBook',
-    href: 'https://cardbook.biz/matchbook-en',
+    href: 'https://matchbook.cardbook.biz/en',
     image: '/new/matchbook.jpg',
     imageAlt: 'Members meeting one-to-one at a CardBook gathering',
   },
@@ -28,7 +30,7 @@ const WAYS = [
     description:
       'A personal session to identify who you need to know, where to find them and how to turn relationships into business opportunities.',
     linkLabel: 'Book a Session',
-    href: '#',
+    href: 'https://www.elliglaybman.com/swipe#bio',
     image: '/new/Strategy.jpg',
     imageAlt: 'Founders in conversation during a strategy session',
   },
@@ -38,7 +40,8 @@ const WAYS = [
     description:
       'Corporate networking, business introductions, event sponsorship and tailored networking solutions for companies.',
     linkLabel: 'Explore Business',
-    href: '#',
+    href: CURRENT_EVENT.sponsorsPath,
+    internal: true,
     image: '/new/Business.jpg',
     imageAlt: 'Business leaders networking in a CardBook room',
   },
@@ -117,6 +120,10 @@ export default function MoreWaysToConnect() {
                 >
                   {card}
                 </a>
+              ) : way.internal ? (
+                <Link to={way.href} className={`${cardClass} cursor-pointer`}>
+                  {card}
+                </Link>
               ) : (
                 <div className={cardClass}>{card}</div>
               )}
