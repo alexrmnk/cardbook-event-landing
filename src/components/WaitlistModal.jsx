@@ -112,7 +112,10 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           formType: mode,
-          event: event?.title || EVENT_LABEL[mode] || 'Membership Request',
+          event:
+            [event?.title, event?.meta].filter(Boolean).join(' · ') ||
+            EVENT_LABEL[mode] ||
+            'Membership Request',
           name: form.name,
           email: form.email,
           phone: form.phone,

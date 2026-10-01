@@ -69,7 +69,7 @@
       {
         "index": "02",
         "title": "CardBook Ecosystem Members",
-        "desc": "Verified CardBook members receive priority access and complimentary registration as part of the ecosystem benefits."
+        "desc": "Guest admission is ₪250. Verified CardBook members attend free on their membership."
       },
       {
         "index": "03",
@@ -138,9 +138,26 @@
     "description": "Position your vision directly in front of a strictly curated audience of founders, investors, and C-level executives. Become a cornerstone of The Networking Club experience.",
     "cta": "Explore Sponsorships"
   },
+  "admission": {
+    "eyebrow": "Admission",
+    "title": "One evening. One ticket.",
+    "price": "₪250",
+    "priceLabel": "Guest entry",
+    "memberNote": "CardBook members attend free on their membership.",
+    "membershipLink": "Membership · ₪400",
+    "ticketTitle": "The Networking Club",
+    "ticketWhen": "04.11.2026 · 19:00",
+    "ticketWhere": "Tel Aviv",
+    "stubAdmit": "Admit one",
+    "stubMembers": "Members free",
+    "stubNumber": "No. 041126",
+    "stubAria": "Tear off the stub",
+    "imageAlt": "Guests at The Networking Club"
+  },
   "finalCta": {
     "headline": "Shape the Future of Your Network.",
-    "subline": "Request your place at an evening designed for leaders who connect with purpose."
+    "subline": "Request your place at an evening designed for leaders who connect with purpose.",
+    "priceNote": "₪250 for guests · Free with CardBook membership"
   },
   "footer": {
     "brand": "The Networking Club",

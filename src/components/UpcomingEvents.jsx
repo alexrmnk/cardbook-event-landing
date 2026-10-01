@@ -44,6 +44,32 @@ const EVENTS = [
     imageAlt: 'Guests networking at a CardBook Networking Club evening',
   },
   {
+    id: 'online-networking-dec',
+    year: 2026,
+    month: 12,
+    tag: 'Online · Waitlist open',
+    title: 'Online Networking',
+    meta: 'December 2026 · Online',
+    description:
+      'CardBook online networking — meet founders, investors and business leaders from anywhere, without the room. Structured intros, real conversations, same community.',
+    cta: 'Join the Waitlist',
+    image: encodeURI('/new/online networking.jpg'),
+    imageAlt: 'CardBook online networking session',
+  },
+  {
+    id: 'online-networking-jan',
+    year: 2027,
+    month: 1,
+    tag: 'Online · Waitlist open',
+    title: 'Online Networking',
+    meta: 'January 2027 · Online',
+    description:
+      'CardBook online networking — meet founders, investors and business leaders from anywhere, without the room. Structured intros, real conversations, same community.',
+    cta: 'Join the Waitlist',
+    image: encodeURI('/new/online networking.jpg'),
+    imageAlt: 'CardBook online networking session',
+  },
+  {
     id: 'big-conference',
     year: 2027,
     month: 2,
@@ -142,12 +168,12 @@ function MonthCell({ year, month, event, selected, onSelect }) {
 
   if (!event) {
     return (
-      <div className="flex min-h-28 flex-col justify-between rounded-2xl border border-white/5 px-4 py-4 md:min-h-32 md:px-5">
+      <div className="flex min-h-28 flex-col justify-between rounded-2xl bg-black/[0.04] px-4 py-4 md:min-h-32 md:px-5">
         <div className="flex items-baseline justify-between gap-2">
-          <span className="text-sm font-medium text-zinc-500">{MONTHS_SHORT[month - 1]}</span>
-          <span className="font-mono text-[10px] tracking-widest text-zinc-600">{year}</span>
+          <span className="text-sm font-medium text-ink-400">{MONTHS_SHORT[month - 1]}</span>
+          <span className="font-sans text-[10px] tracking-widest text-ink-300">{year}</span>
         </div>
-        <p className="text-sm text-zinc-600">No events</p>
+        <p className="text-sm text-ink-300">No events</p>
       </div>
     );
   }
@@ -162,32 +188,42 @@ function MonthCell({ year, month, event, selected, onSelect }) {
       aria-pressed={selected}
       aria-label={`${event.title}, ${label}${event.day ? `, ${dateLine}` : ', date to be announced'}`}
       onClick={() => onSelect(event.id)}
-      className={`flex min-h-28 flex-col rounded-2xl border px-4 py-4 text-left transition-colors duration-200 md:min-h-32 md:px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light ${
-        selected
-          ? 'border-accent/40 bg-accent/10 ring-1 ring-accent/40'
-          : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]'
+      className={`flex min-h-28 flex-col rounded-2xl px-4 py-4 text-left transition-colors duration-200 md:min-h-32 md:px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light ${
+        selected ? 'bg-accent' : 'bg-white/55 hover:bg-white'
       }`}
     >
       <div className="flex items-baseline justify-between gap-2">
-        <span className={`text-sm font-medium ${selected ? 'text-white' : 'text-zinc-300'}`}>
+        <span className={`text-sm font-medium ${selected ? 'text-white' : 'text-ink-800'}`}>
           {MONTHS_SHORT[month - 1]}
         </span>
-        <span className="font-mono text-[10px] tracking-widest text-zinc-500">{year}</span>
+        <span
+          className={`font-sans text-[10px] tracking-widest ${
+            selected ? 'text-white/70' : 'text-ink-400'
+          }`}
+        >
+          {year}
+        </span>
       </div>
 
       <div className="mt-3">
         {event.day ? (
           <span
             aria-hidden="true"
-            className={`mb-2 inline-flex size-9 items-center justify-center rounded-full font-mono text-xs font-medium md:size-10 md:text-sm ${
-              selected ? 'bg-accent text-white' : 'bg-white/10 text-white'
+            className={`mb-2 inline-flex size-9 items-center justify-center rounded-full font-sans text-xs font-medium md:size-10 md:text-sm ${
+              selected ? 'bg-white text-accent' : 'bg-ink-800 text-white'
             }`}
           >
             {pad2(event.day)}
           </span>
         ) : null}
-        <p className="line-clamp-2 text-sm font-medium leading-snug text-white">{event.title}</p>
-        <p className="mt-1 text-xs text-zinc-400">{dateLine}</p>
+        <p
+          className={`line-clamp-2 text-sm font-medium leading-snug ${
+            selected ? 'text-white' : 'text-ink-900'
+          }`}
+        >
+          {event.title}
+        </p>
+        <p className={`mt-1 text-xs ${selected ? 'text-white/75' : 'text-ink-400'}`}>{dateLine}</p>
       </div>
     </button>
   );
@@ -217,10 +253,10 @@ export default function UpcomingEvents() {
         </header>
 
         <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 lg:self-start md:p-8">
+          <div className="rounded-3xl border border-white/10 bg-[#EDEAF4] p-5 lg:self-start md:p-8">
             <div className="flex flex-wrap items-end justify-between gap-3">
-              <h3 className="text-lg font-semibold text-white md:text-xl">Upcoming Events</h3>
-              <p className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+              <h3 className="text-lg font-semibold text-ink-800 md:text-xl">Upcoming Events</h3>
+              <p className="font-sans text-[11px] uppercase tracking-widest text-ink-400">
                 Nov 2026 – Apr 2027
               </p>
             </div>

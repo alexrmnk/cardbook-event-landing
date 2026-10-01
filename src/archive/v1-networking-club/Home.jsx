@@ -3,6 +3,7 @@ import { useDocumentMeta } from '../../hooks/useDocumentMeta';
 import { CURRENT_EVENT } from '../../config/currentEvent';
 import SponsorLogos from './components/SponsorLogos';
 import ValueProps from './components/ValueProps';
+import Admission from './components/Admission';
 import Roadmap from './components/Roadmap';
 import TickerMarquee from './components/TickerMarquee';
 import About from './components/About';
@@ -25,6 +26,7 @@ export default function Home() {
       <SponsorLogos />
       <About />
       <ValueProps />
+      <Admission />
       <Roadmap />
       <TickerMarquee />
       <Venue />
