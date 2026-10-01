@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import WaitlistModal from './WaitlistModal';
 import { CURRENT_EVENT } from '../config/currentEvent';
+import { EVENTS, SEASON } from '../config/events';
 
 const MONTHS_SHORT = [
   'Jan',
@@ -19,83 +19,9 @@ const MONTHS_SHORT = [
   'Dec',
 ];
 
-const SEASON = [
-  { year: 2026, month: 11 },
-  { year: 2026, month: 12 },
-  { year: 2027, month: 1 },
-  { year: 2027, month: 2 },
-  { year: 2027, month: 3 },
-  { year: 2027, month: 4 },
-];
-
-const EVENTS = [
-  {
-    id: 'networking-club',
-    year: 2026,
-    month: 11,
-    day: 4,
-    tag: 'Upcoming · Open registration soon',
-    title: 'Networking Club',
-    meta: '04.11.2026 · Tel Aviv',
-    description:
-      'Founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
-    cta: 'Join the Waitlist',
-    image: encodeURI('/new/Networking Club-new.jpg'),
-    imageAlt: 'Guests networking at a CardBook Networking Club evening',
-  },
-  {
-    id: 'online-networking-dec',
-    year: 2026,
-    month: 12,
-    tag: 'Online · Waitlist open',
-    title: 'Online Networking',
-    meta: 'December 2026 · Online',
-    description:
-      'CardBook online networking — meet founders, investors and business leaders from anywhere, without the room. Structured intros, real conversations, same community.',
-    cta: 'Join the Waitlist',
-    image: encodeURI('/new/online networking.jpg'),
-    imageAlt: 'CardBook online networking session',
-  },
-  {
-    id: 'online-networking-jan',
-    year: 2027,
-    month: 1,
-    tag: 'Online · Waitlist open',
-    title: 'Online Networking',
-    meta: 'January 2027 · Online',
-    description:
-      'CardBook online networking — meet founders, investors and business leaders from anywhere, without the room. Structured intros, real conversations, same community.',
-    cta: 'Join the Waitlist',
-    image: encodeURI('/new/online networking.jpg'),
-    imageAlt: 'CardBook online networking session',
-  },
-  {
-    id: 'big-conference',
-    year: 2027,
-    month: 2,
-    tag: 'Flagship event',
-    title: 'CardBook Big Conference',
-    meta: 'February 2027 · Tel Aviv',
-    description:
-      '1,000 people. One network. Infinite opportunities. The largest CardBook event of the year — where the next generation of founders, investors and dealmakers meet.',
-    cta: 'Join the Waitlist',
-    image: encodeURI('/new/Big Conference.jpg'),
-    imageAlt: 'A full auditorium at the CardBook annual conference',
-  },
-  {
-    id: 'business-morning',
-    year: 2027,
-    month: 3,
-    tag: 'Private · By invitation',
-    title: 'Business morning meeting',
-    meta: 'March 2027 · Tel Aviv · Limited seats',
-    description:
-      'For founders and business leaders who want direct access to the right conversations, not another networking crowd.',
-    cta: 'Join the Waitlist',
-    image: '/new/meeting.jpg',
-    imageAlt: 'Founders and business leaders in conversation at a morning meeting',
-  },
-];
+const seasonStart = SEASON[0];
+const seasonEnd = SEASON[SEASON.length - 1];
+const SEASON_LABEL = `${MONTHS_SHORT[seasonStart.month - 1]} ${seasonStart.year} – ${MONTHS_SHORT[seasonEnd.month - 1]} ${seasonEnd.year}`;
 
 const EVENTS_BY_MONTH = Object.fromEntries(
   EVENTS.map((event) => [`${event.year}-${event.month}`, event]),
@@ -128,6 +54,8 @@ function EventPreview({ event, onWaitlist }) {
           alt={event.imageAlt}
           width={800}
           height={600}
+          loading="lazy"
+          decoding="async"
           className="size-full object-cover"
         />
         <div
@@ -229,14 +157,13 @@ function MonthCell({ year, month, event, selected, onSelect }) {
   );
 }
 
-export default function UpcomingEvents() {
+export default function UpcomingEvents({ onRequest }) {
   const shouldReduceMotion = useReducedMotion();
   const [activeEventId, setActiveEventId] = useState(
     EVENTS.some((event) => event.id === CURRENT_EVENT.eventId)
       ? CURRENT_EVENT.eventId
       : EVENTS[0].id,
   );
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const activeEvent = EVENTS.find((event) => event.id === activeEventId) ?? EVENTS[0];
 
@@ -257,7 +184,7 @@ export default function UpcomingEvents() {
             <div className="flex flex-wrap items-end justify-between gap-3">
               <h3 className="text-lg font-semibold text-ink-800 md:text-xl">Upcoming Events</h3>
               <p className="font-sans text-[11px] uppercase tracking-widest text-ink-400">
-                Nov 2026 – Apr 2027
+                {SEASON_LABEL}
               </p>
             </div>
 
@@ -298,19 +225,13 @@ export default function UpcomingEvents() {
               >
                 <EventPreview
                   event={activeEvent}
-                  onWaitlist={() => setIsModalOpen(true)}
+                  onWaitlist={() => onRequest?.(activeEvent)}
                 />
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
       </div>
-
-      <WaitlistModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        event={activeEvent}
-      />
     </section>
   );
 }

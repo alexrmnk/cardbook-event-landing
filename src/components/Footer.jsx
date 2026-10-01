@@ -92,7 +92,7 @@ export default function Footer() {
                   key={key}
                   type="button"
                   onClick={() => openModal(modal)}
-                  className="font-mono text-[10px] tracking-widest uppercase text-zinc-400 hover:text-white transition-colors duration-300"
+                  className="rounded-sm font-mono text-[10px] uppercase tracking-widest text-zinc-400 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
                 >
                   {t(`footer.${key}`)}
                 </button>

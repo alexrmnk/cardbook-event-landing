@@ -5,14 +5,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Fixed header is h-20. Below md, section padding is shorter than the header, so anchor jumps hide the title. */
+    /* Fixed header is h-20 at every breakpoint, so anchor jumps keep the title below it. */
     scroll-padding-top: 5.5rem;
-  }
-
-  @media (min-width: 768px) {
-    html {
-      scroll-padding-top: 0;
-    }
   }
 
   body {

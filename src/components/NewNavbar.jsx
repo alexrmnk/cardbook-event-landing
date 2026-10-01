@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import { EventPulse } from './EventPromoPill';
@@ -17,8 +17,12 @@ const NAV_LINKS = [
 ];
 
 export default function NewNavbar() {
+  const shouldReduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(shouldReduceMotion);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const toggleRef = useRef(null);
+  const panelRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
@@ -27,14 +31,61 @@ export default function NewNavbar() {
   }, []);
 
   useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    const closeOnDesktop = () => {
+      if (desktop.matches) setIsMenuOpen(false);
+    };
+    desktop.addEventListener('change', closeOnDesktop);
+    return () => desktop.removeEventListener('change', closeOnDesktop);
+  }, []);
+
+  useEffect(() => {
     if (!isMenuOpen) return undefined;
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const focusable = () => {
+      const toggle = toggleRef.current ? [toggleRef.current] : [];
+      const panelItems = panelRef.current
+        ? [...panelRef.current.querySelectorAll('a[href], button:not([disabled])')]
+        : [];
+      return [...toggle, ...panelItems];
+    };
+
+    const opened = focusable();
+    (opened[1] ?? opened[0])?.focus();
+
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') setIsMenuOpen(false);
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const nodes = focusable();
+      if (nodes.length === 0) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !nodes.includes(active))) {
+        event.preventDefault();
+        last.focus();
+        return;
+      }
+      if (!event.shiftKey && (active === last || !nodes.includes(active))) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+      toggleRef.current?.focus();
+    };
   }, [isMenuOpen]);
 
   const isSolid = isScrolled || isMenuOpen;
@@ -75,7 +126,7 @@ export default function NewNavbar() {
               <li key={link.label}>
                 {link.highlight ? (
                   <Link to={link.to} className={highlightClass}>
-                    <EventPulse />
+                    <EventPulse reduceMotion={reduceMotion} />
                     {link.label}
                   </Link>
                 ) : link.to ? (
@@ -95,12 +146,13 @@ export default function NewNavbar() {
         <div className="flex items-center gap-2 lg:hidden">
           {CURRENT_EVENT.isActive && (
             <Link to={CURRENT_EVENT.path} className={highlightClass}>
-              <EventPulse />
+              <EventPulse reduceMotion={reduceMotion} />
               {CURRENT_EVENT.navShortLabel}
             </Link>
           )}
           {/* ── Mobile toggle ── */}
           <button
+          ref={toggleRef}
           type="button"
           onClick={() => setIsMenuOpen((open) => !open)}
           aria-expanded={isMenuOpen}
@@ -121,12 +173,13 @@ export default function NewNavbar() {
       <AnimatePresence initial={false}>
         {isMenuOpen && (
           <motion.div
+            ref={panelRef}
             id="mobile-nav"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-white/10 bg-ink-950/95 backdrop-blur-xl lg:hidden"
+            className="overflow-hidden overscroll-contain border-t border-white/10 bg-ink-950/95 backdrop-blur-xl lg:hidden"
           >
             <ul className="mx-auto max-w-7xl px-6 py-2 md:px-10">
               {NAV_LINKS.map((link) => (
@@ -137,7 +190,7 @@ export default function NewNavbar() {
                       onClick={() => setIsMenuOpen(false)}
                       className={`${highlightClass} my-3 w-fit`}
                     >
-                      <EventPulse />
+                      <EventPulse reduceMotion={reduceMotion} />
                       {link.label}
                     </Link>
                   ) : link.to ? (

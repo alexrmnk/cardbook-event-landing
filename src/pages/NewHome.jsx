@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import WaitlistModal from '../components/WaitlistModal';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import NewNavbar from '../components/NewNavbar';
@@ -13,15 +14,31 @@ import EventPromoPill from '../components/EventPromoPill';
 import { CURRENT_EVENT } from '../config/currentEvent';
 
 const HERO_VIDEO_SRC = 'https://assets.cardbookecosystem.com/video_back.mp4';
+const HERO_POSTER_SRC = '/new/hero-poster.jpg';
 
 export default function NewHome() {
   const shouldReduceMotion = useReducedMotion();
-  const heroVideoRef = useRef(null);
+  const heroRef = useRef(null);
+  const [playHeroVideo, setPlayHeroVideo] = useState(false);
+  const [waitlistRequest, setWaitlistRequest] = useState(null);
 
   useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video || !shouldReduceMotion) return;
-    video.pause();
+    if (shouldReduceMotion !== false) {
+      setPlayHeroVideo(false);
+      return undefined;
+    }
+
+    const hero = heroRef.current;
+    if (!hero) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setPlayHeroVideo(true);
+      observer.disconnect();
+    });
+
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, [shouldReduceMotion]);
 
   const fadeUp = (delay = 0) => ({
@@ -42,19 +59,33 @@ export default function NewHome() {
 
       <main id="main">
         {/* ── Hero ── */}
-        <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-ink-950">
-          <video
-            ref={heroVideoRef}
-            autoPlay={!shouldReduceMotion}
-            muted
-            loop={!shouldReduceMotion}
-            playsInline
-            preload="metadata"
+        <section
+          ref={heroRef}
+          className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-ink-950"
+        >
+          <img
+            src={HERO_POSTER_SRC}
+            alt=""
+            width={1600}
+            height={899}
+            decoding="async"
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover motion-reduce:hidden"
-          >
-            <source src={HERO_VIDEO_SRC} type="video/mp4" />
-          </video>
+            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+          />
+          {playHeroVideo ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              poster={HERO_POSTER_SRC}
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+            >
+              <source src={HERO_VIDEO_SRC} type="video/mp4" />
+            </video>
+          ) : null}
 
           {/* Legibility overlays — light enough to show the video, dense enough for type */}
           <div
@@ -138,10 +169,12 @@ export default function NewHome() {
         <PastEvents />
 
         {/* ── Membership ── */}
-        <Membership />
+        <Membership onRequest={(mode) => setWaitlistRequest({ mode })} />
 
         {/* ── Upcoming events ── */}
-        <UpcomingEvents />
+        <UpcomingEvents
+          onRequest={(event) => setWaitlistRequest({ mode: 'waitlist', event })}
+        />
 
         {/* ── More ways to connect ── */}
         <MoreWaysToConnect />
@@ -151,6 +184,13 @@ export default function NewHome() {
       </main>
 
       <Footer />
+
+      <WaitlistModal
+        isOpen={waitlistRequest !== null}
+        onClose={() => setWaitlistRequest(null)}
+        mode={waitlistRequest?.mode ?? 'waitlist'}
+        event={waitlistRequest?.event}
+      />
     </div>
   );
 }

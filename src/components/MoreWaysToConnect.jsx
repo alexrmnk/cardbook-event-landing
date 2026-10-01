@@ -84,6 +84,8 @@ export default function MoreWaysToConnect() {
                   alt=""
                   width={1200}
                   height={800}
+                  loading="lazy"
+                  decoding="async"
                   aria-hidden="true"
                   className="size-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                 />

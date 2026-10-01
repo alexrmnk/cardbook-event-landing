@@ -1,5 +1,7 @@
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import CircularGallery from './CircularGallery';
+
+const CircularGallery = lazy(() => import('./CircularGallery'));
 
 const STATS = [
   { value: '14,000+', label: 'entrepreneurs, investors & leaders connected in Israel' },
@@ -18,6 +20,41 @@ const GALLERY_ITEMS = [
   { image: '/new/7e.webp', text: 'Managing Partners' },
   { image: '/new/8e.webp', text: 'Ambassadors' },
 ];
+
+function PastEventsGallery() {
+  const slotRef = useRef(null);
+  const [shouldMount, setShouldMount] = useState(false);
+
+  useEffect(() => {
+    const slot = slotRef.current;
+    if (!slot) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setShouldMount(true);
+        observer.disconnect();
+      },
+      { rootMargin: '240px 0px' },
+    );
+
+    observer.observe(slot);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={slotRef}
+      className="mt-12 h-[380px] w-full overflow-hidden px-0 sm:h-[460px] md:h-[560px]"
+    >
+      {shouldMount ? (
+        <Suspense fallback={null}>
+          <CircularGallery items={GALLERY_ITEMS} />
+        </Suspense>
+      ) : null}
+    </div>
+  );
+}
 
 export default function PastEvents() {
   const shouldReduceMotion = useReducedMotion();
@@ -57,9 +94,7 @@ export default function PastEvents() {
         </div>
       </div>
 
-      <div className="mt-12 h-[380px] w-full overflow-hidden px-0 sm:h-[460px] md:h-[560px]">
-        <CircularGallery items={GALLERY_ITEMS} />
-      </div>
+      <PastEventsGallery />
 
       <p className="mx-auto mt-16 max-w-2xl px-6 text-center text-lg font-medium leading-relaxed text-zinc-300 md:text-xl">
         From Tel Aviv to the global CardBook network — this is what happens when the right

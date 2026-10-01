@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CheckCircle, Loader2, X } from 'lucide-react';
 import MoltenMetal from './MoltenMetal';
@@ -16,7 +16,7 @@ const INITIAL_FORM = {
 };
 
 const FIELD_CLASS =
-  'w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-zinc-600 outline-none transition-colors duration-200 focus:border-violet-500';
+  'w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-zinc-600 transition-colors duration-200 focus-visible:border-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400';
 
 const LABEL_CLASS = 'mb-1 block text-xs uppercase tracking-widest text-zinc-400';
 
@@ -48,13 +48,35 @@ const EVENT_LABEL = {
   'single-entry': 'One-time Event Entry',
 };
 
+const SUBMIT_ERROR = 'We could not send your request. Check your connection and try again.';
+
+async function postWaitlist(payload) {
+  // The Apps Script web app does not answer a CORS preflight, so the status
+  // cannot be read. A thrown fetch is a failed send. A resolved no-cors fetch
+  // only means the browser handed the same JSON body off.
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist' }) {
   const [form, setForm] = useState(INITIAL_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [nameError, setNameError] = useState('');
+  const [submitError, setSubmitError] = useState('');
   const [isDesktop, setIsDesktop] = useState(false);
+  const nameInputRef = useRef(null);
   const copy = MODAL_COPY[mode] ?? MODAL_COPY.waitlist;
+  const hasDraft = Object.values(form).some((value) => value.trim() !== '');
 
   useEffect(() => {
     const media = window.matchMedia('(min-width: 768px)');
@@ -70,6 +92,7 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
       setIsSubmitting(false);
       setIsSuccess(false);
       setNameError('');
+      setSubmitError('');
       return;
     }
 
@@ -88,10 +111,23 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (!isOpen || isSuccess || !hasDraft) return undefined;
+
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [hasDraft, isOpen, isSuccess]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((current) => ({ ...current, [name]: value }));
     if (name === 'name' && nameError) setNameError('');
+    if (submitError) setSubmitError('');
   };
 
   const handleSubmit = async (e) => {
@@ -100,32 +136,36 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
 
     if (!form.name.trim().includes(' ')) {
       setNameError('Please enter your full name (first and last name).');
+      nameInputRef.current?.focus();
       return;
     }
 
+    setSubmitError('');
     setIsSubmitting(true);
 
-    try {
-      await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          formType: mode,
-          event:
-            [event?.title, event?.meta].filter(Boolean).join(' · ') ||
-            EVENT_LABEL[mode] ||
-            'Membership Request',
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          company: form.company,
-          goals: form.goals,
-          linkedin: form.linkedin,
-        }),
-      });
+    const payload = {
+      formType: mode,
+      event:
+        [event?.title, event?.meta].filter(Boolean).join(' · ') ||
+        EVENT_LABEL[mode] ||
+        'Membership Request',
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      company: form.company,
+      goals: form.goals,
+      linkedin: form.linkedin,
+    };
 
+    try {
+      const delivered = await postWaitlist(payload);
+      if (!delivered) {
+        setSubmitError(SUBMIT_ERROR);
+        return;
+      }
       setIsSuccess(true);
+    } catch {
+      setSubmitError(SUBMIT_ERROR);
     } finally {
       setIsSubmitting(false);
     }
@@ -185,7 +225,7 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
               </div>
             </div>
 
-            <div className="relative h-full w-full overflow-y-auto bg-zinc-900/95 p-6 pb-12 backdrop-blur-xl md:w-1/2 md:p-12">
+            <div className="relative h-full w-full overflow-y-auto overscroll-contain bg-zinc-900/95 p-6 pb-12 backdrop-blur-xl md:w-1/2 md:p-12">
               <button
                 type="button"
                 onClick={onClose}
@@ -251,12 +291,13 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
                           Full Name
                         </label>
                         <input
+                          ref={nameInputRef}
                           id="waitlist-name"
                           name="name"
                           type="text"
                           required
                           autoComplete="name"
-                          placeholder="Jane Cohen"
+                          placeholder="Jane Cohen…"
                           value={form.name}
                           onChange={handleChange}
                           aria-invalid={nameError ? 'true' : 'false'}
@@ -283,7 +324,7 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
                           type="text"
                           required
                           autoComplete="organization"
-                          placeholder="COO at CardBook"
+                          placeholder="COO at CardBook…"
                           value={form.company}
                           onChange={handleChange}
                           className={FIELD_CLASS}
@@ -300,7 +341,8 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
                           type="email"
                           required
                           autoComplete="email"
-                          placeholder="you@company.com"
+                          spellCheck={false}
+                          placeholder="you@company.com…"
                           value={form.email}
                           onChange={handleChange}
                           className={FIELD_CLASS}
@@ -317,7 +359,7 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
                           type="tel"
                           required
                           autoComplete="tel"
-                          placeholder="+972 50 000 0000"
+                          placeholder="+972 50 000 0000…"
                           value={form.phone}
                           onChange={handleChange}
                           className={FIELD_CLASS}
@@ -333,7 +375,7 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
                           name="goals"
                           rows={4}
                           required
-                          placeholder="e.g. investors, potential clients, partners, new connections..."
+                          placeholder="e.g. investors, potential clients, partners, new connections…"
                           value={form.goals}
                           onChange={handleChange}
                           className={`${FIELD_CLASS} resize-y`}
@@ -349,13 +391,19 @@ export default function WaitlistModal({ isOpen, onClose, event, mode = 'waitlist
                           name="linkedin"
                           type="text"
                           autoComplete="url"
-                          placeholder="https://linkedin.com/in/..."
+                          placeholder="https://linkedin.com/in/…"
                           value={form.linkedin}
                           onChange={handleChange}
                           className={FIELD_CLASS}
                         />
                       </div>
                     </div>
+
+                    {submitError ? (
+                      <p role="alert" className="mb-4 text-sm text-red-400">
+                        {submitError}
+                      </p>
+                    ) : null}
 
                     <button
                       type="submit"

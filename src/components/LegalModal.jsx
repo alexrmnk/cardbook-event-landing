@@ -43,7 +43,8 @@ export default function LegalModal({
           <button
             type="button"
             onClick={onClose}
-            className="fixed top-6 right-6 md:top-8 md:right-8 z-[101] font-mono text-[10px] tracking-widest2 uppercase text-zinc-400 hover:text-white transition-colors duration-300"
+            aria-label={closeLabel}
+            className="fixed top-6 right-6 z-[101] rounded-sm font-mono text-[10px] uppercase tracking-widest2 text-zinc-400 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:top-8 md:right-8"
           >
             {closeLabel}
           </button>

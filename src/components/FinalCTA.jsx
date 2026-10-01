@@ -91,7 +91,10 @@ export default function FinalCTA() {
                 <img
                   src={founder.src}
                   alt={founder.alt}
+                  width={1518}
+                  height={1518}
                   loading="lazy"
+                  decoding="async"
                   draggable={false}
                   className="size-16 shrink-0 rounded-full object-cover ring-2 ring-white/10 md:size-20"
                 />

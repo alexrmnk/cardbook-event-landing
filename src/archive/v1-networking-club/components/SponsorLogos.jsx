@@ -6,50 +6,68 @@ const SPONSORS = [
     src: '/media/sponsor-logo/mellius-logo.svg',
     alt: 'Mellius',
     href: 'https://mellius.com',
+    width: 190,
+    height: 69,
   },
   {
     src: '/media/sponsor-logo/smartexe-logo.svg',
     alt: 'Smartexe',
     href: 'https://smartexe.com',
+    width: 330,
+    height: 71,
   },
   {
     src: '/media/sponsor-logo/anat-cherpak.png',
     alt: 'Anat Cherpak',
     href: 'https://www.linkedin.com/in/anat-cherpak-%D7%A2%D7%A0%D7%AA-%D7%A6-%D7%A8%D7%A4%D7%A7-%D7%9E%D7%97%D7%A0%D7%90%D7%99-142b2822/',
+    width: 302,
+    height: 245,
   },
   {
     src: '/media/sponsor-logo/deal%20ventures.png',
     alt: 'Deal Ventures',
     href: 'https://www.linkedin.com/in/ido-yonesi/',
+    width: 3163,
+    height: 1377,
   },
   {
     src: '/media/sponsor-logo/acro.png',
     alt: 'Acro',
     href: 'https://acronadlan.com/en/',
+    width: 2013,
+    height: 612,
   },
   {
     src: '/media/sponsor-logo/partner4.png',
     alt: 'Passport News',
     href: 'https://passport.news/',
+    width: 633,
+    height: 175,
   },
   {
     src: '/media/sponsor-logo/TBC.svg',
     alt: 'TBC',
     href: 'https://tbcbank.ge/en',
+    width: 822,
+    height: 347,
   },
   {
     src: '/media/sponsor-logo/agile.png',
     alt: 'Agile',
     href: 'https://getagile.ai/',
+    width: 1860,
+    height: 600,
   },
   {
     src: '/media/sponsor-logo/AB_media.png',
     alt: 'AB media',
     href: 'https://www.instagram.com/ab.media.il',
+    width: 1016,
+    height: 1010,
   },
 ];
 
-const TRACK_ITEMS = Array.from({ length: 8 }, () => SPONSORS).flat();
+const TRACK_ITEMS = [...SPONSORS, ...SPONSORS];
 const MARQUEE_DURATION_MS = 100_000;
 const DRAG_CLICK_THRESHOLD_PX = 6;
 
@@ -80,10 +98,10 @@ function LogoTrack({ items, ariaHidden = false, onLinkClick }) {
             className="pointer-events-none block h-6 w-auto max-w-none select-none object-contain opacity-45 brightness-0 invert transition-opacity duration-300 group-hover/link:opacity-100 md:h-11"
             decoding="async"
             draggable={false}
-            height="auto"
-            loading="eager"
+            height={sponsor.height}
+            loading="lazy"
             src={sponsor.src}
-            width="auto"
+            width={sponsor.width}
           />
         );
 

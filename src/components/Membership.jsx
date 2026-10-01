@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
@@ -11,7 +10,6 @@ import {
   Percent,
   Ticket,
 } from 'lucide-react';
-import WaitlistModal from './WaitlistModal';
 
 const SINGLE_ENTRY_INCLUDES = [
   'Entry',
@@ -269,14 +267,11 @@ function DigitalTicket() {
   );
 }
 
-export default function Membership() {
+export default function Membership({ onRequest }) {
   const shouldReduceMotion = useReducedMotion();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [offerMode, setOfferMode] = useState('membership');
 
   const openOffer = (mode) => {
-    setOfferMode(mode);
-    setIsModalOpen(true);
+    onRequest?.(mode);
   };
 
   const revealUp = (delay = 0) => ({
@@ -287,7 +282,6 @@ export default function Membership() {
   });
 
   return (
-    <>
     <section id="membership" className="mx-auto max-w-7xl px-6 py-12 md:py-24">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
         {/* ── Offer ── */}
@@ -387,12 +381,5 @@ export default function Membership() {
         Become a Member
       </button>
     </section>
-
-    <WaitlistModal
-      isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
-      mode={offerMode}
-    />
-    </>
   );
 }
