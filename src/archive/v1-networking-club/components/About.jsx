@@ -17,14 +17,14 @@ const AVATAR_PROFILES = [
     src: '/media/elli.jpg',
     alt: 'Elli Glaybman',
     name: 'Elli Glaybman',
-    title: 'CO-FOUNDER & CEO',
+    title: 'Co-Founder & Head of Business Development',
   },
   {
     href: 'https://www.linkedin.com/in/alex-lyhovez-mba/',
     src: '/media/alex.jpg',
     alt: 'Alex Lyhovez',
     name: 'Alex Lyhovez',
-    title: 'CO-FOUNDER & HEAD OF BUSINESS GROWTH',
+    title: 'Co-Founder & CEO',
   },
   {
     href: 'https://www.linkedin.com/in/alena-morozova-625969238/',
@@ -60,14 +60,6 @@ const revealVariants = {
   }),
 };
 
-const lineVariants = {
-  hidden: { scaleX: 0 },
-  visible: {
-    scaleX: 1,
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 },
-  },
-};
-
 const stats = [
   { value: t('about.stat1Value'), label: t('about.stat1Label') },
   { value: t('about.stat2Value'), label: t('about.stat2Label') },
@@ -87,23 +79,6 @@ export default function About() {
       <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-accent-glow blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-screen-xl mx-auto px-6 md:px-12 lg:px-20">
-
-        {/* ── Header row ── */}
-        <motion.div
-          variants={revealVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          custom={0}
-          className="mb-20 md:mb-28"
-        >
-          <span className="eyebrow">{t('about.eyebrow')}</span>
-          <motion.span
-            variants={lineVariants}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            className="block h-px bg-accent/30 w-12 mb-8 origin-left"
-          />
-        </motion.div>
 
         {/* ── Two-column layout ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 xl:gap-32 items-start">

@@ -21,7 +21,7 @@ const SINGLE_ENTRY_INCLUDES = [
 const BENEFITS = [
   {
     icon: Ticket,
-    title: '3 Networking Club Events',
+    title: '3 Networking Club Offline/Online Events',
     description: 'Full access, without buying tickets one by one.',
   },
   {

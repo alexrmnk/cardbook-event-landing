@@ -25,6 +25,9 @@ export default {
           glow: 'rgba(127,83,229,0.08)',
         },
         gold: '#C9A96E',
+        paper: '#F4F2F8',
+        'paper-ink': '#16151C',
+        'paper-line': 'rgba(22,21,28,0.10)',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],

@@ -17,18 +17,18 @@ const VENUE_VIDEO_SRC =
   'https://assets.cardbookecosystem.com/video_back.mp4';
 
 const VENUE_MEDIA = [
-  { id: 1,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/1.jpeg'  },
+  { id: 1,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/1-1.jpg'  },
   { id: 2,  type: 'image', aspectRatio: 'aspect-[9/16]',  mediaSrc: '/media/2.jpeg'  },
-  { id: 3,  type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/3.jpeg'  },
+  { id: 3,  type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/3-3.jpg'  },
   { id: 4,  type: 'image', aspectRatio: 'aspect-[9/16]',  mediaSrc: '/media/4.jpeg'  },
-  { id: 5,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/5.jpeg'  },
+  { id: 5,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/5-5.jpg'  },
   { id: 6,  type: 'video', aspectRatio: 'aspect-[9/16]',  mediaSrc: 'https://assets.cardbookecosystem.com/pantera_1.mp4'  },
-  { id: 7,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/7.jpeg'  },
+  { id: 7,  type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/7-7.jpg'  },
   { id: 8,  type: 'video', aspectRatio: 'aspect-[9/16]',  mediaSrc: 'https://assets.cardbookecosystem.com/pantera_2.mp4'  },
-  { id: 9,  type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/9.jpeg'  },
+  { id: 9,  type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/9-9.jpg'  },
   { id: 10, type: 'image', aspectRatio: 'aspect-[4/5]',   mediaSrc: '/media/10.jpeg' },
   { id: 11, type: 'image', aspectRatio: 'aspect-[9/16]',  mediaSrc: '/media/8.jpeg'},
-  { id: 12, type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/6.jpeg'},
+  { id: 12, type: 'image', aspectRatio: 'aspect-square',  mediaSrc: '/media/9-9-1.jpg'},
 ];
 
 // ─── Column builder ───────────────────────────────────────────────────────────

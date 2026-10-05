@@ -2,8 +2,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ShieldCheck, UserCheck, Martini, Utensils } from 'lucide-react';
 import textData from '../../../locales/en.json';
-
-const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
+import TickerMarquee from './TickerMarquee';
 
 const ITEM_ICONS = [ShieldCheck, UserCheck, Martini, Utensils];
 
@@ -14,17 +13,10 @@ export default function ValueProps() {
   const items = textData.valueProps.items;
 
   return (
-    <section ref={ref} className="relative bg-ink-950 border-t border-ink-800">
-      {/* Subtle top accent line */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={isInView ? { scaleX: 1 } : {}}
-        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent origin-left"
-      />
+    <section ref={ref} className="relative bg-paper">
+      <TickerMarquee />
 
-      <div className="max-w-screen-xl mx-auto">
-        {/* 2×2 grid — hairline borders between cells */}
+      <div className="mx-auto max-w-screen-xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {items.map((item, i) => {
             const isRightCol = i % 2 === 1;
@@ -42,43 +34,38 @@ export default function ValueProps() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 className={[
-                  'group relative px-8 md:px-12 lg:px-16 py-12 md:py-14 lg:py-16',
-                  'border-b border-ink-800',
-                  isRightCol ? 'md:border-l md:border-ink-800' : '',
+                  'group relative px-8 py-12 md:px-12 md:py-14 lg:px-16 lg:py-16',
+                  'border-b border-paper-line',
+                  isRightCol ? 'md:border-l md:border-paper-line' : '',
                   !isTopRow ? 'md:border-b-0' : '',
                 ].join(' ')}
               >
-                {/* Hover fill */}
-                <div className="absolute inset-0 bg-accent-glow opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                <div className="pointer-events-none absolute inset-0 bg-accent/8 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
-                {/* Icon */}
                 <div className="mb-6">
                   {Icon && (
                     <Icon
-                      className="size-14 text-accent/70"
+                      className="size-14 text-accent"
                       strokeWidth={1.5}
                       aria-hidden="true"
                     />
                   )}
                 </div>
 
-                {/* Title + optional badge */}
-                <div className="flex flex-wrap items-center gap-2.5 mb-3">
-                  <h3 className="font-serif text-xl md:text-2xl text-ink-100 font-medium leading-snug group-hover:text-white transition-colors duration-500">
+                <div className="mb-3 flex flex-wrap items-center gap-2.5">
+                  <h3 className="font-serif text-xl font-medium leading-snug text-paper-ink md:text-2xl">
                     {item.title}
                   </h3>
                   {item.badge && (
-                    <span className="inline-flex shrink-0 bg-white/5 border border-white/10 rounded-full px-2.5 py-0.5 text-xs tracking-wider uppercase text-zinc-400 font-sans">
+                    <span className="inline-flex shrink-0 rounded-full border border-accent/15 bg-accent/8 px-2.5 py-0.5 font-sans text-xs uppercase tracking-wider text-accent">
                       {item.badge}
                     </span>
                   )}
                 </div>
 
-                {/* Hairline rule */}
-                <span className="block w-6 h-px bg-accent/30 mb-4 group-hover:w-10 transition-all duration-500" />
+                <span className="mb-4 block h-px w-6 bg-accent/40 transition-all duration-500 group-hover:w-10" />
 
-                {/* Description */}
-                <p className="font-sans text-sm text-ink-300 leading-relaxed font-light max-w-xs">
+                <p className="max-w-xs font-sans text-sm font-light leading-relaxed text-ink-400">
                   {item.desc}
                 </p>
               </motion.div>

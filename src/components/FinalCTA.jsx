@@ -7,14 +7,14 @@ const FOUNDERS = [
     src: '/media/elli.jpg',
     alt: 'Elli Glaybman',
     name: 'Elli Glaybman',
-    title: 'Co-Founder & CEO',
+    title: 'Co-Founder & Head of Business Development',
   },
   {
     href: 'https://www.linkedin.com/in/alex-lyhovez-mba/',
     src: '/media/alex.jpg',
     alt: 'Alex Lyhovez',
     name: 'Alex Lyhovez',
-    title: 'Co-Founder & Head of Business Growth',
+    title: 'Co-Founder & CEO',
   },
   {
     href: 'https://www.linkedin.com/in/alena-morozova-625969238/',

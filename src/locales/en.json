@@ -143,6 +143,13 @@
     "title": "One evening. One ticket.",
     "price": "₪250",
     "priceLabel": "Guest entry",
+    "includesLabel": "Includes",
+    "includes": [
+      "Entry",
+      "Two complimentary drinks",
+      "Networking",
+      "Catering"
+    ],
     "memberNote": "CardBook members attend free on their membership.",
     "membershipLink": "Membership · ₪400",
     "ticketTitle": "The Networking Club",
