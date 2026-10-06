@@ -7,8 +7,8 @@ const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 
 const STEP_IMAGES = [
   '/media/1_connect.jpg',
-  '/media/2_profile.jpg',
   '/media/3_reccive.jpg',
+  '/media/2_profile.jpg',
 ];
 
 const containerVariants = {

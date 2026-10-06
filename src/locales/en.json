@@ -13,7 +13,7 @@
     "locationCity": "Tel Aviv",
     "locationLabel": "Location",
     "dateLabel": "Date",
-    "cta": "Request Invitation",
+    "cta": "Get Tickets",
     "ctaHref": "https://connect.cardbook.biz/events",
     "ctaNote": "By invitation only · Strictly limited seats",
     "scrollHint": "Scroll"
@@ -45,16 +45,16 @@
     "title": "How to Join",
     "steps": [
       {
-        "title": "01. Request an Invitation",
-        "description": "Complete a short registration form on the Connect platform and tell us about yourself, your business, and what opportunities you are looking for."
+        "title": "01. Join the Platform",
+        "description": "Set up your basic account to access the event ecosystem."
       },
       {
-        "title": "02. Profile Review",
-        "description": "To maintain a high-quality environment, all applications are reviewed by the CardBook team. Our goal is to ensure a relevant mix of founders, investors, executives, and business leaders."
+        "title": "02. Get Your Pass",
+        "description": "Select your preferred ticket and check out. We’ll email your digital ticket right away."
       },
       {
-        "title": "03. Confirm Your Attendance",
-        "description": "Approved guests will receive an invitation with event details, access to Connect, and the opportunity to start building meaningful connections before the event begins."
+        "title": "03. Set Up & Connect",
+        "description": "Finish your profile to start messaging and booking meetings with other attendees before the event begins."
       }
     ]
   },
