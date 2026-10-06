@@ -77,7 +77,7 @@ export default function Admission() {
             </a>
             <Link
               to="/#membership"
-              className="font-mono text-lg uppercase tracking-widest text-ink-200 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:text-xl"
+              className="inline-flex items-center gap-1.5 font-mono text-lg uppercase tracking-widest text-accent-light underline decoration-accent/60 underline-offset-[6px] transition-colors duration-300 hover:text-white hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light md:text-xl"
             >
               {t('admission.membershipLink')}
             </Link>

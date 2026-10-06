@@ -11,6 +11,8 @@ import {
   Ticket,
 } from 'lucide-react';
 
+const SHOW_SINGLE_ENTRY_OFFER = false;
+
 const SINGLE_ENTRY_INCLUDES = [
   'Entry',
   'Two complimentary drinks',
@@ -324,36 +326,38 @@ export default function Membership({ onRequest }) {
             </button>
           </div>
 
-          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-8">
-            <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
-              <p className="text-4xl font-bold tracking-tight text-white md:text-5xl">₪250</p>
-              <p className="pb-1 text-sm uppercase tracking-wide text-zinc-400">
-                One event · No membership
-              </p>
+          {SHOW_SINGLE_ENTRY_OFFER ? (
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+              <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
+                <p className="text-4xl font-bold tracking-tight text-white md:text-5xl">₪250</p>
+                <p className="pb-1 text-sm uppercase tracking-wide text-zinc-400">
+                  One event · No membership
+                </p>
+              </div>
+
+              <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {SINGLE_ENTRY_INCLUDES.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-zinc-300">
+                    <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-accent-light" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                type="button"
+                onClick={() => openOffer('single-entry')}
+                className="group mt-8 inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-lg border border-accent px-8 py-4 font-sans text-sm uppercase tracking-widest text-accent transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 sm:w-auto"
+              >
+                Request one-time entry
+                <ArrowRight
+                  size={14}
+                  strokeWidth={1.5}
+                  className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
             </div>
-
-            <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {SINGLE_ENTRY_INCLUDES.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-zinc-300">
-                  <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-accent-light" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <button
-              type="button"
-              onClick={() => openOffer('single-entry')}
-              className="group mt-8 inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-lg border border-accent px-8 py-4 font-sans text-sm uppercase tracking-widest text-accent transition-colors duration-300 hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 sm:w-auto"
-            >
-              Request one-time entry
-              <ArrowRight
-                size={14}
-                strokeWidth={1.5}
-                className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </button>
-          </div>
+          ) : null}
         </motion.div>
 
         {/* ── Digital pass ── */}
