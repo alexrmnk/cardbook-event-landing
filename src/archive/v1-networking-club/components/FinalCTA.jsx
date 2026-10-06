@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Lock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import textData from '../../../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
@@ -86,15 +86,6 @@ export default function FinalCTA() {
           <p className="mt-5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             {t('finalCta.priceNote')}
           </p>
-
-          <div className="flex items-center justify-center gap-2 md:gap-3 mt-5 px-5 py-2.5 md:px-6 md:py-2 rounded-full border border-white/20 bg-black/40 backdrop-blur-md w-fit mx-auto max-w-[90vw]">
-            <Lock className="w-3.5 h-3.5 md:w-3 md:h-3 text-white shrink-0" aria-hidden="true" />
-            <div className="flex flex-col md:flex-row items-center text-center text-[11px] md:text-xs uppercase tracking-wider md:tracking-[0.2em] text-white font-medium leading-tight">
-              <span>BY INVITATION ONLY</span>
-              <span className="hidden md:inline mx-2">·</span>
-              <span>STRICTLY LIMITED SEATS</span>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
