@@ -58,7 +58,7 @@ const BENEFITS = [
   },
   {
     icon: Key,
-    title: '2 Intro Tokens',
+    title: '15 Warm intros',
     description: 'Use them for guaranteed, highly targeted personal introductions.',
   },
 ];

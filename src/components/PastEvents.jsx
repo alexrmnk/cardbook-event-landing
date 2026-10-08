@@ -14,7 +14,7 @@ const GALLERY_ITEMS = [
   { image: '/new/1e.webp', text: 'Founders' },
   { image: '/new/2e.webp', text: 'CEOs' },
   { image: '/new/3e.webp', text: 'Investors' },
-  { image: '/new/4e.webp', text: 'Industry Leaders' },
+  { image: '/new/4e1.webp', text: 'Industry influencers' },
   { image: '/new/5e.webp', text: 'Honorary Consuls' },
   { image: '/new/6e.webp', text: 'C-Level Executives' },
   { image: '/new/7e.webp', text: 'Managing Partners' },
