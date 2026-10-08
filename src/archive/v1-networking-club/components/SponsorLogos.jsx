@@ -65,6 +65,13 @@ const SPONSORS = [
     width: 1016,
     height: 1010,
   },
+  {
+    src: '/media/sponsor-logo/exiteam-logo.webp',
+    alt: 'EXITEAM',
+    href: 'https://exit-team.com/en/',
+    width: 1983,
+    height: 267,
+  },
 ];
 
 const TRACK_ITEMS = [...SPONSORS, ...SPONSORS];

@@ -5,9 +5,8 @@ import textData from '../../../locales/en.json';
 
 const t = (path) => path.split('.').reduce((obj, key) => obj?.[key], textData);
 
-const PAST_EVENT_IMAGES = Array.from(
-  { length: 11 },
-  (_, i) => `/media/past-events/${i + 1}.jpg`,
+const PAST_EVENT_IMAGES = [1, 2, 3, 4, 9, 6, 7, 8, 5, 10, 11].map(
+  (n) => `/media/past-events/${n}.jpg`,
 );
 const CAROUSEL_IMAGES = [...PAST_EVENT_IMAGES, ...PAST_EVENT_IMAGES];
 
