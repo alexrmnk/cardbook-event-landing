@@ -22,7 +22,7 @@ export const EVENTS = [
     description:
       'Founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
     cta: 'Join the Waitlist',
-    image: encodeURI('/new/Networking Club-new.jpg'),
+    image: encodeURI('/new/Networking-Club-new.jpg'),
     imageAlt: 'Guests networking at a CardBook Networking Club evening',
   },
   {
