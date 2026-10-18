@@ -15,10 +15,10 @@ export const EVENTS = [
     id: 'networking-club',
     year: 2026,
     month: 11,
-    day: 4,
+    day: 25,
     tag: 'Upcoming · Open registration soon',
     title: 'Networking Club',
-    meta: '04.11.2026 · Tel Aviv',
+    meta: '25.11.2026 · Tel Aviv',
     description:
       'Founders, investors and business leaders in one room, structured to help you meet the right people — not just more people. (Included in Membership)',
     cta: 'Join the Waitlist',
