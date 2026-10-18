@@ -3,8 +3,8 @@
 // isActive: false hides the promo pill and the navbar event item.
 export const CURRENT_EVENT = {
   isActive: true,
-  path: '/events/04-11',
-  sponsorsPath: '/events/04-11/sponsors',
+  path: '/events/25-11',
+  sponsorsPath: '/events/25-11/sponsors',
   eventId: 'networking-club',
   ctaMode: 'register',
   navLabel: 'Event 25.11',
