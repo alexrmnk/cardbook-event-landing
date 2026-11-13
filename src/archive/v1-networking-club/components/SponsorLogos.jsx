@@ -10,12 +10,24 @@ const SPONSORS = [
     height: 69,
   },
   {
+  src: '/media/sponsor-logo/diplomatic.png',
+  alt: 'Diplomatic',
+  width: 200,
+  height: 80,
+  },
+  {
     src: '/media/sponsor-logo/smartexe-logo.svg',
     alt: 'Smartexe',
     href: 'https://smartexe.com',
     width: 330,
     height: 71,
   },
+  {
+  src: '/media/sponsor-logo/kula-wine.png',
+  alt: 'Kula Wine',
+  width: 200,
+  height: 80,
+},
   {
     src: '/media/sponsor-logo/anat-cherpak.png',
     alt: 'Anat Cherpak',
